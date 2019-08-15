@@ -55,3 +55,36 @@ end;
 call check_salary_repeat(7788, '2019-08-11',2000.00);
 
 ```
+### 
+mysql basic operations
+https://blog.csdn.net/bulrush__xiao/article/details/52847941
+###
+common data types
+int, float, decimal(小数值, 对DECIMAL(M,D) ，如果M>D，为M+2否则为D+2; 其范围依赖于D,M的值), varchar(变长字符串), text(长文本数据), datetime(YYYY-MM-DD HH:MM:SS)
+```sql
+create table employee
+(
+	id int,
+	name varchar(40),
+	sex char(4),
+	birthday date,
+	Entry_date date,
+	job varchar(100),
+	salary Decimal(8,2),
+	resume Text
+);
+```
+###
+插入数据
+```sql
+1.插入数据
+insert into employee(id,name,sex,birthday,entry_date,salary,resume) values(1,'zhangsan','male','1993-03-04','2016-11-10','1000','i am a developer');
+//可以省略表字段，但是必须插入全部字段
+insert into employee values(null,null,'male','1993-03-04','2016-11-10','1000','i am a developer');
+//无法插入
+insert into employee values('male','1993-03-04','2016-11-10','1000','i am a developer');
+//可以包起来所有类型
+insert into employee values('5',null,'male','1993-03-04','2016-11-10','1000','i am a developer');
+//指定某些列插入数据
+insert into employee(id) values(6);
+```
