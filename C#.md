@@ -81,9 +81,14 @@ scope is where a variable or a constant has meaning and is accessible
   }
 }
 ```
-a block is indicated by curly braces
-a is accessible anywhere inside this block or any of these child. if I go out of this block and try to access a, the program will not compile
+- a block is indicated by curly braces
+a is accessible anywhere inside this block or 
+any of these child. if I go out of this block and try to access a, the program will not compile
 最外层的块都所以地方都能访问到
+if an exception happens in the try block, this catch block will be executed. this prevents your 
+application from crashing. the reason our application crashed was because we did not handle the 
+exceptionn so if you don't handle exception, the exception will be propagated to the .NET runtime
+and that the run times mechanism is to stop your application and display the error
 
 ```C#
 try{
@@ -91,8 +96,8 @@ try{
 catch{
 }
 ```
-if an exception happens in the try block, this catch block will be executed. this prevents your application from crashing. the reason our application crashed was because we did not handle the exceptionn so if you don't handle exception, the exception will be propagated to the .NET runtime and that the run times mechanism is to stop your application and display the error
-Operators
+
+operator
 ===
 - use == to test equality
 - b = ++a is different from b == a++
