@@ -1,3 +1,12 @@
+template
+===
+```python
+dfs():
+    if ...
+        return
+    for ...
+        dfs()
+```
 491. Increasing Subsequences
 Medium
 Given an integer array, your task is to find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2.
@@ -177,4 +186,97 @@ class Solution(object):
                 dfs(nums[:i]+nums[i+1:], path + [nums[i]], res)
         dfs(nums, [], res)
         return res
+```
+
+131. Palindrome Partitioning
+
+Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return all possible palindrome partitioning of s.
+
+Example:
+
+Input: "aab"
+Output:
+[
+  ["aa","b"],
+  ["a","a","b"]
+]
+```python
+class Solution(object):
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
+        res = []
+        self.helper(s, res, [])
+        return res
+    
+    def isPal(self, s):
+        return s == s[::-1]
+    
+    def helper(self, s, res, cur):
+        if not s:
+            res.append(cur)
+            return
+        for i in xrange(1, len(s) + 1):
+            if self.isPal(s[:i]):
+                self.helper(s[i:], res, cur + [s[:i]])
+
+```
+
+282. Expression Add Operators
+
+Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+
+Example 1:
+Input: num = "123", target = 6
+Output: ["1+2+3", "1*2*3"] 
+
+Example 2:
+Input: num = "232", target = 8
+Output: ["2*3+2", "2+3*2"]
+
+Example 3:
+Input: num = "105", target = 5
+Output: ["1*0+5","10-5"]
+
+Example 4:
+Input: num = "00", target = 0
+Output: ["0+0", "0-0", "0*0"]
+
+Example 5:
+Input: num = "3456237490", target = 9191
+Output: []
+
+```python
+class Solution(object):
+    def addOperators(self, num, target):
+        """
+        :type num: str
+        :type target: int
+        :rtype: List[str]
+        """
+        res = []
+        self.helper(num, target, res, '', 0, 0, 0)
+        return res
+    
+    def helper(self, num, target, res, path, pos, totalVal, pre_val):
+        if pos == len(num):
+            if target == totalVal:
+                res.append(path)
+            return
+        
+        for i in xrange(pos, len(num)):
+            if num[pos] == '0' and i != pos:
+                break  #  105 , 0 as a single digit is acceptable but not acceptable as 05
+            
+            curVal = int(num[pos: i+1])
+            if pos == 0:
+                self.helper(num, target, res, str(curVal), i + 1, curVal, curVal)
+            else:
+                self.helper(num, target, res, path + '+' + str(curVal), i + 1, totalVal + curVal, curVal)
+                self.helper(num, target, res, path + '-' + str(curVal), i + 1, totalVal - curVal, -curVal)
+                self.helper(num, target, res, path + '*' + str(curVal), i + 1, totalVal - pre_val + pre_val*curVal, pre_val*curVal)
 ```
