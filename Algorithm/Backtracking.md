@@ -373,7 +373,7 @@ class Solution(object):
         :type robot: Robot
         :rtype: None
         """
-        dir = ([-1, 0], [0, 1], [1, 0], [0, -1])  # 每次向右转然后走一步的方向
+        dir = ([-1, 0], [0, 1], [1, 0], [0, -1])  # 只要相对是顺序不变就行 哪个列表在第一个无所谓。表示每次向右转然后走一步的方向/表示向四个不同的方向走一步
         
         def dfs(i, j, cleaned, cur_dir):
             robot.clean()
