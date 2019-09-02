@@ -104,3 +104,5 @@ operator
 - logical operators are used in boolean expressions which are often used in conditional statements; the not operator is indicated by an exclamation mark
 - im the real world, keep comments to be minimum and explain whys, hows and constrains, etc. not thhe whats.
 
+public bool Equals( string value ) 
+判断当前的 string 对象是否与指定的 string 对象具有相同的值。
