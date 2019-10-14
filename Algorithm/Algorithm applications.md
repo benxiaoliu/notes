@@ -21,4 +21,4 @@ local_max = global_max = nums[0]
 
 Binary search
 ===
-When need to cut down time complexity, also thinking about binary search method.
+When need to cut down time complexity, always thinking about binary search method.
