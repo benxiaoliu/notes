@@ -1,5 +1,6 @@
 
 Kadane's Algorithm
+===
 ```python
 def max_subarray(A):
     max_ending_here = max_so_far = A[0]
