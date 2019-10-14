@@ -1,5 +1,5 @@
 
-Kadane's Algorithm
+Kadane's Algorithm (Maximum sub array problem)
 ===
 ```python
 def max_subarray(A):
@@ -18,3 +18,7 @@ local_max = global_max = nums[0]
             global_max = max(global_max, local_max)
         return global_max
 ```        
+
+Binary search
+===
+When need to cut down time complexity, also thinking about binary search method.
