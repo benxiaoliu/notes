@@ -8,6 +8,19 @@ Data Structure Comparasion
 ===
 Binary Search Tree VS HashMap
 
+HashMap: use Entry array and linkedlist to implement
+call hashCode() -> calculate hash -> calculate index in the Entry array
+if multiple keys get the same index at last, cur.next = head to insert new key value pair. if the list is too long, time complexity for searching reachs O(n), so when it's more than 8, convert the linked list to red-black tree.
+when the length of the Entry array reaches its capacity, need to have a 2 times new Entry array and call transfer() to copy all items from the original array to the new one.
+when add a key = null pair, will call putForNullKey()to go through table[0]Entry linked list, looking for the Entry where e.key = null, if found, e.value = newValue and return oldValue; if not found, call addEntry to add a new Entry where e.key = null.
+
+process in hashMap is not safe. when two threads want to add a key value pair to the same Entry index, they will get the same head at first, then the previous added one will be lost. if you want to achieve safe process in hashMap, call static method collections.syncronizeMap()
+
+concurrency and safe process, ConCurrentHashMap use segmentation lock, divide data into several segments and each segment has a lock.when one thread is writing the segment, other threads cannot read or write the segment. 
+volitile promise current write operation will be finished before all read or write operations comes later.
+
+hashTable has low efficiency because whole hashTable has one lock
+
 Java basics
 ===
 * OOP principles
