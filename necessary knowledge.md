@@ -21,6 +21,12 @@ volitile promise current write operation will be finished before all read or wri
 
 hashTable has low efficiency because whole hashTable has one lock
 
+hashMap VS hashTable
+hashTable is syncronized, hashMap is not
+hashTable doesn't allow null key or value, hashMap allows both
+
+both of them use Entry array and linkedList, some detailed difference when implemented, like how to calculate the hash or expand the capacity...
+
 Java basics
 ===
 * OOP principles
