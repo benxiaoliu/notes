@@ -62,6 +62,23 @@ The difference in performance between Java and Python is sometimes significant i
 compile or inerprete language
 ===
 
+An interpreted language is a type of programming language for which most of its implementations execute instructions directly and freely, without previously compiling a program into machine-language instructions. The interpreter executes the program directly, translating each statement into a sequence of one or more subroutines, and then into another language (often machine code).
+
+Many languages have been implemented using both compilers and interpreters, including BASIC, C, Lisp, and Pascal. Java and C# are compiled into bytecode, the virtual-machine-friendly interpreted language. Lisp implementations can freely mix interpreted and compiled code.
+
+A compiled language is a programming language whose implementations are typically compilers (translators that generate machine code from source code), and not interpreters (step-by-step executors of source code, where no pre-runtime translation takes place).
+
+The term is somewhat vague. In principle, any language can be implemented with a compiler or with an interpreter.[1] A combination of both solutions is also common: a compiler can translate the source code into some intermediate form (often called p-code or bytecode), which is then passed to an interpreter which executes it.
+
+Java is commonly considered to be compiled
+
+Initially, interpreted languages were compiled line-by-line; that is, each line was compiled as it was about to be executed, and if a loop or subroutine caused certain lines to be executed multiple times, they would be recompiled every time. This has become much less common. Most so-called interpreted languages use an intermediate representation, which combines compiling and interpreting.
+Examples include:
+JavaScript
+Python
+
+The intermediate representation can be compiled once and for all (as in Java), each time before execution (as in Ruby), or each time a change in the source is detected before execution (as in Python).
+
 Restful API
 ===
 * REpresentational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services. REST API is a way of accessing the web services in a simple and flexible way without having any processing.
