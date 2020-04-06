@@ -6,7 +6,29 @@ system design
 
 Data Structure Comparasion
 ===
+
 https://medium.com/omarelgabrys-blog/data-structures-a-quick-comparison-6689d725b3b0
+
+Binary Search Tree VS HashMap
+
+HashMap: use Entry array and linkedlist to implement
+call hashCode() -> calculate hash -> calculate index in the Entry array
+if multiple keys get the same index at last, cur.next = head to insert new key value pair. if the list is too long, time complexity for searching reachs O(n), so when it's more than 8, convert the linked list to red-black tree.
+when the length of the Entry array reaches its capacity, need to have a 2 times new Entry array and call transfer() to copy all items from the original array to the new one.
+when add a key = null pair, will call putForNullKey()to go through table[0]Entry linked list, looking for the Entry where e.key = null, if found, e.value = newValue and return oldValue; if not found, call addEntry to add a new Entry where e.key = null.
+
+process in hashMap is not safe. when two threads want to add a key value pair to the same Entry index, they will get the same head at first, then the previous added one will be lost. if you want to achieve safe process in hashMap, call static method collections.syncronizeMap()
+
+concurrency and safe process, ConCurrentHashMap use segmentation lock, divide data into several segments and each segment has a lock.when one thread is writing the segment, other threads cannot read or write the segment. 
+volitile promise current write operation will be finished before all read or write operations comes later.
+
+hashTable has low efficiency because whole hashTable has one lock
+
+hashMap VS hashTable
+hashTable is syncronized, hashMap is not
+hashTable doesn't allow null key or value, hashMap allows both
+
+both of them use Entry array and linkedList, some detailed difference when implemented, like how to calculate the hash or expand the capacity...
 
 Java basics
 ===
@@ -16,8 +38,49 @@ Java basics
 python VS Java
 ===
 
+Java and Python have many similarities. Both languages have strong cross-platform support and extensive standard libraries. They both treat (nearly) everything as objects. Both languages compile to bytecode, but Python is (usually) compiled at runtime. They are both members of the Algol family, although Python deviates further from C/C++ than Java does.
+
+Python and Java are both object-oriented languages, but Java uses static types, while Python is dynamic. This is the most significant difference and affects how you design, write, and troubleshoot programs in a fundamental way
+
+We can’t mix types in a Java array. The code won’t compile.
+
+In Python, we don’t have to provide a type when we declare the array and can put whatever we want in it. It’s up to us to make sure we don’t try to misuse the contents.
+
+Static typing catches type errors at compile time.
+
+Whether static typing prevents errors or not, it does make code run faster. A compiler working on statically-typed code can optimize better for the target platform. Also, you avoid runtime type errors, adding another performance boost.
+
+Code that’s written with dynamic types tends to be less verbose than static languages. Variables aren’t declared with types, and the type can change. 
+
+Putting together a Python program tends to be faster and easier than in Java. This is especially true of utility programs for manipulating files or retrieving data from web resources.
+
+Both Java and Python compile to bytecode and run in virtual machines. This isolates code from differences between operating systems, making the languages cross-platform. But there’s a critical difference. Python usually compiles code at runtime, while Java compiles it in advance, and distributes the bytecode.
+
+Most JVMs perform just-in-time compilation to all or part of programs to native code, which significantly improves performance. Mainstream Python doesn’t do this, but a few variants such as PyPy do.
+
+The difference in performance between Java and Python is sometimes significant in some cases. A simple binary tree test runs ten times faster in Java than in Python.
+
+ Java’s just-in-time compilation gives it an advantage over Python’s interpreted performance. While neither language is suitable for latency-sensitive applications, Java is still a great deal faster than Python.
+
 compile or inerprete language
 ===
+
+An interpreted language is a type of programming language for which most of its implementations execute instructions directly and freely, without previously compiling a program into machine-language instructions. The interpreter executes the program directly, translating each statement into a sequence of one or more subroutines, and then into another language (often machine code).
+
+Many languages have been implemented using both compilers and interpreters, including BASIC, C, Lisp, and Pascal. Java and C# are compiled into bytecode, the virtual-machine-friendly interpreted language. Lisp implementations can freely mix interpreted and compiled code.
+
+A compiled language is a programming language whose implementations are typically compilers (translators that generate machine code from source code), and not interpreters (step-by-step executors of source code, where no pre-runtime translation takes place).
+
+The term is somewhat vague. In principle, any language can be implemented with a compiler or with an interpreter.[1] A combination of both solutions is also common: a compiler can translate the source code into some intermediate form (often called p-code or bytecode), which is then passed to an interpreter which executes it.
+
+Java is commonly considered to be compiled
+
+Initially, interpreted languages were compiled line-by-line; that is, each line was compiled as it was about to be executed, and if a loop or subroutine caused certain lines to be executed multiple times, they would be recompiled every time. This has become much less common. Most so-called interpreted languages use an intermediate representation, which combines compiling and interpreting.
+Examples include:
+JavaScript
+Python
+
+The intermediate representation can be compiled once and for all (as in Java), each time before execution (as in Ruby), or each time a change in the source is detected before execution (as in Python).
 
 UUID
 ===
@@ -84,12 +147,17 @@ Code on Demand (The only optional constraint of REST architecture)
 
 
 * REST VS SOAP
+
 Since SOAP is a protocol, it follows a strict standard to allow communication between the client and the server whereas REST is an architectural style that doesn’t follow any strict standard but follows six constraints 
 SOAP uses only XML for exchanging information in its message format whereas REST is not restricted to XML
 Benefits of SOAP over REST as SOAP has ACID complaints transaction. Some of the applications require transaction ability which is accepted by SOAP whereas REST lacks in it.
 Benefits of SOAP over REST as SOAP has ACID complaints transaction. Some of the applications require transaction ability which is accepted by SOAP whereas REST lacks in it.
 On the basis of Security, SOAP has SSL( Secure Socket Layer) and WS-security whereas REST has SSL and HTTPS. In the case of Bank Account Password, Card Number, etc. SOAP is preferred over REST. The security issue is all about your application requirement, you have to build security on your own. It’s about what type of protocol you use.
 REST can use SOAP protocol but SOAP cannot use REST.
+REST technology is generally preferred to the more robust Simple Object Access Protocol (SOAP) technology because REST uses the less bandwidth, simple and flexible making it more suitable for internet usage. It’s used to fetch or give some information from a web services. All communication done via REST API used only HTTP request. 
+
+
+
 REST technology is generally preferred to the more robust Simple Object Access Protocol (SOAP) technology because REST uses the less bandwidth, simple and flexible making it more suitable for internet usage. It’s used to fetch or give some information from a web services. All communication done via REST API used only HTTP request. 
 
 * commonly used HTTP methods
@@ -109,12 +177,15 @@ framwork
 ===
 * Djongo VS SpringMVC
 * Tornado VS Djongo
+* Djongo VS Flask
 
 database
 ===
 * ACID
 * Transaction
 
+how do you do test
+===
 
 my projects
 ===
