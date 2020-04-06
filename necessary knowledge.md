@@ -6,6 +6,9 @@ system design
 
 Data Structure Comparasion
 ===
+
+https://medium.com/omarelgabrys-blog/data-structures-a-quick-comparison-6689d725b3b0
+
 Binary Search Tree VS HashMap
 
 HashMap: use Entry array and linkedlist to implement
