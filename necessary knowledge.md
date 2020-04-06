@@ -199,6 +199,7 @@ my projects
 ===
 * OFE pipeline
 * Scope vs sql
+you can write C# in Scope language, more easily to implement complex logic
 * COSMOS
 * EAther
 * visualizetion website
