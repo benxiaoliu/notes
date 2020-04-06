@@ -35,6 +35,30 @@ Java basics
 python VS Java
 ===
 
+Java and Python have many similarities. Both languages have strong cross-platform support and extensive standard libraries. They both treat (nearly) everything as objects. Both languages compile to bytecode, but Python is (usually) compiled at runtime. They are both members of the Algol family, although Python deviates further from C/C++ than Java does.
+
+Python and Java are both object-oriented languages, but Java uses static types, while Python is dynamic. This is the most significant difference and affects how you design, write, and troubleshoot programs in a fundamental way
+
+We can’t mix types in a Java array. The code won’t compile.
+
+In Python, we don’t have to provide a type when we declare the array and can put whatever we want in it. It’s up to us to make sure we don’t try to misuse the contents.
+
+Static typing catches type errors at compile time.
+
+Whether static typing prevents errors or not, it does make code run faster. A compiler working on statically-typed code can optimize better for the target platform. Also, you avoid runtime type errors, adding another performance boost.
+
+Code that’s written with dynamic types tends to be less verbose than static languages. Variables aren’t declared with types, and the type can change. 
+
+Putting together a Python program tends to be faster and easier than in Java. This is especially true of utility programs for manipulating files or retrieving data from web resources.
+
+Both Java and Python compile to bytecode and run in virtual machines. This isolates code from differences between operating systems, making the languages cross-platform. But there’s a critical difference. Python usually compiles code at runtime, while Java compiles it in advance, and distributes the bytecode.
+
+Most JVMs perform just-in-time compilation to all or part of programs to native code, which significantly improves performance. Mainstream Python doesn’t do this, but a few variants such as PyPy do.
+
+The difference in performance between Java and Python is sometimes significant in some cases. A simple binary tree test runs ten times faster in Java than in Python.
+
+ Java’s just-in-time compilation gives it an advantage over Python’s interpreted performance. While neither language is suitable for latency-sensitive applications, Java is still a great deal faster than Python.
+
 compile or inerprete language
 ===
 
