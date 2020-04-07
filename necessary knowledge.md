@@ -207,6 +207,8 @@ you can write C# in Scope language, more easily to implement complex logic
 you can even use python
 * COSMOS
 
+https://microsoft.sharepoint.com/:p:/r/teams/stca/ipe/_layouts/15/Doc.aspx?sourcedoc=%7B32C3A3BA-8E48-4AA9-851A-ECCDA5450056%7D&file=Introduction%20to%20COSMOS%20.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1
+
 Exporting Data From Cosmos Programmatically
 https://microsoft.sharepoint.com/teams/Cosmos/Wiki/Exporting%20Data%20From%20Cosmos%20Programmatically.aspx
 I want to download data from Cosmos, and then push to SQL or Azure DB. What are the best practices to keep in mind?
