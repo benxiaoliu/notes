@@ -201,6 +201,15 @@ my projects
 * Scope vs sql
 you can write C# in Scope language, more easily to implement complex logic
 * COSMOS
+
+Exporting Data From Cosmos Programmatically
+https://microsoft.sharepoint.com/teams/Cosmos/Wiki/Exporting%20Data%20From%20Cosmos%20Programmatically.aspx
+I want to download data from Cosmos, and then push to SQL or Azure DB. What are the best practices to keep in mind?
+While exporting data from Cosmos, and then pushing it to another destination, we suggest that you handle the data by partition. We also suggest you implement a caching layer to reduce the chances of connection failures. Here is some Sample Code​
+
+
+
+
 * EAther
 * visualizetion website
 * plugin
