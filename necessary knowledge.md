@@ -217,6 +217,70 @@ While exporting data from Cosmos, and then pushing it to another destination, we
 
 
 * EAther
+
+Æther Platform
+
+Overview
+
+Æther system architecture consists of several entities which interact through Æther Service. This acts as a hub for all Æther functionality.
+
+https://aetherwiki.azurewebsites.net/articles/FeatureAreas/images/Architecture_Diagram.png
+Architecture Diagram
+
+An Experiment in Æther is a collection of modules and datasources that form an executable. Experiments are represented as a graph of nodes where the output of one node can be used as the input for the next. 
+
+
+Æther Service
+
+Æther Service is what makes up the core functionality of Æther. It is a RESTful API that handles requests from the user to do things like submit experiments, get resource info, search queries, etc. It also manages routing data to and from various machines during the execution process.
+
+Æther Service also manages data references and can clean up unused data automatically. See Æther Data Deletion Policy for more info.
+
+For scenarios that require stricter security, a local instance of Æther Service can be run on your PC or machine cluster. See Æther OneBox for details.
+
+User Clients
+
+There are a number of ways in which the user can interact with Æther Service: 
+
+
+
+Æther Client
+
+A standalone application with a graphical user interface. (Æther Client is an application that provides Æther Services to users via a graphical user interface. )
+
+Graph parameters are used to quickly replace parameter values in one or more modules in the execution graph before re-running the graph. However, graph parameter values could only take static values until now.
+
+Æther now has Macros that can be used as values in graph parameters to dynamically populate parameter values. Parameter value can be specified used Macros as ##MACRO## in Æther.
+
+
+Æther Programmatic
+
+A Visual Studio plugin that wraps Æther Library with some of the GUI elements of Æther Client.
+
+
+Æther Library
+
+A C# Library that provides functionality for interfacing with Æther from code.
+
+Compute Clusters
+
+When executing a module, Æther Service will package up the neccessary files (binaries, scripts, inputs, etc.) and send them off to a machine or group of machines known as a compute cluster that will perform the module execution.
+
+By default, Æther will use its proprietary "EXE Pool" cluster. However, it's often advantageous to use other cloud systems for computation, depending on the situation. For example, deep learning tasks are best done on machines that can handle a massive amount of multi-processing, hence the large-scale GPU cluster of the Philly cloud system would be better suited for this task.
+
+See Cloud Systems Overview for a list of available cloud systems and their corresponding use case scenarios.
+
+Storage
+
+Naturally, datasources and module output need to be stored somewhere. Æther can make use of a number of storage options. By default, Æther stores this data on Cosmos, in Virtual Clusters designed to store public Æther data.
+
+You can of course use your own VC instead, see Add a VC in Æther for instructions. If you would like your data to remain private, rather than accessible to all Microsoft employees, see Controlled Access Execution. 
+
+You can also store data locally on your PC through the use of Æther OneBox.
+
+Additionally, it's also possible to use Azure Blobs for storage. See Using Azure Blobs for details.
+
+
 * visualizetion website
 * plugin
 
