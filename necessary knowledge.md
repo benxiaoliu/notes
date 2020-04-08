@@ -219,6 +219,9 @@ While exporting data from Cosmos, and then pushing it to another destination, we
 * EAther
 * visualizetion website
 * plugin
+
+why use d3.js
+
 * NLP course
 * ML course
 
