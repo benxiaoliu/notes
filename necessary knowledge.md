@@ -38,6 +38,11 @@ hashTable doesn't allow null key or value, hashMap allows both
 
 both of them use Entry array and linkedList, some detailed difference when implemented, like how to calculate the hash or expand the capacity...
 
+connection pool
+===
+
+a connection pool is a cache of database connections maintained so that the connections can be reused when future requests to the database are required. Connection pools are used to enhance the performance of executing commands on a database. Opening and maintaining a database connection for each user, especially requests made to a dynamic database-driven website application, is costly and wastes resources. In connection pooling, after a connection is created, it is placed in the pool and it is used again so that a new connection does not have to be established. If all the connections are being used, a new connection is made and is added to the pool. Connection pooling also cuts down on the amount of time a user must wait to establish a connection to the database.
+
 Java basics
 ===
 * OOP principles
