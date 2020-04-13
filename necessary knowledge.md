@@ -12,6 +12,11 @@ Request data from a server - after the page has loaded
 Receive data from a server - after the page has loaded
 Send data to a server - in the background
 
+
+cornor cases
+===
+
+
 Data Structure Comparasion
 ===
 
