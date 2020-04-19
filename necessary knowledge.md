@@ -197,11 +197,68 @@ DELETE: Delete an existing resource on the server specified by the request URI. 
 Regular expression
 ===
 
-framwork
+framwork https://www.netguru.com/blog/python-frameworks-comparison
 ===
 * Djongo VS SpringMVC
-* Tornado VS Djongo
-* Djongo VS Flask
+* Tornado VS Flask
+
+What is Flask? a microframework for Python based on Werkzeug, Jinja 2 and good intentions. Flask is intended for getting started very quickly and was developed with best intentions in mind.
+
+What is Tornado? A Python web framework and asynchronous networking library, originally developed at FriendFeed. By using non-blocking network I/O, Tornado can scale to tens of thousands of open connections, making it ideal for long polling, WebSockets, and other applications that require a long-lived connection to each user.
+
+Tornado:
+The integration with other frameworks and libraries is also possible: Twisted, asyncio or even WSGI applications. Tornado’s features:
+
+offers a lot of generic classes that can be used for creating the application, e.g. Router, or SocketHandler for websockets,
+
+custom HTML template engine,
+
+clear and easy-to-read documentation,
+
+functions and classes can be used for defining actions and handling requests,
+
+custom routing handling – offers generic classes than can be used for route creation,
+
+it supports WSGI, but it’s not recommended – the user should use Tornado’s own interfaces instead,
+
+out-of-the-box websockets support, authentication (e.g. via Google), and security features (like cookie signing or XSRF protection),
+
+no additional tools are needed for REST API creation.
+
+The framework should work well in cases where there are a lot of incoming connections that can be handled quickly or in real-time solutions, e.g. chats. Tornado tries to solve the c10k problem so high processing speed is a priority. Another advantage of Tornado is its native support for social services. This framework won’t be a good choice for creating standard CRUD sites or big business applications, as it wasn’t designed to be used that way. For bigger projects, it can be integrated with WSGI applications as a part of their bigger structure and take care of tasks that require high handling speeds.
+
+
+
+* Djongo VS Flask (https://www.netguru.com/blog/flask-vs-django-comparison)
+Djongo https://www.netguru.com/blog/pros-and-cons-of-django
+they are quite different in terms of what they implement in the framework, and what they leave for the developer to write.
+
+Flask is a microframework that implements the bare minimum, leaving the developer with complete freedom of choice in terms of modules and add-ons.
+
+Django on the other hand, adopts an all inclusive approach, providing an admin panel, ORM (Object Relational Mapping), database interfaces and so on.
+
+Development speed
+Django was created for fast development of complex web apps. developers have all the tools they need to implement and develop easily scalable, reliable, and maintainable web apps, in record time. Flask’s simplicity also allows experienced developers to create smaller apps in short timeframes.
+
+Learning curve
+For those not already familiar with Python or web frameworks, it is generally accepted that Django has a slightly steeper learning curve than Flask. Django does provide benefits if you need to change your development team mid-way through the process, or scale the app with a new team after project completion. New, experienced developers should be able to understand the project’s architecture and conventions more easily in Django, rather than taking over a project created in Flask.
+
+Flexibility and control
+One of Flask’s greatest strengths, is its minimalism and simplicity. No restrictions means that the developer can implement everything exactly as they want it, using a huge range of external libraries and add-ons, making it flexible and extensible. Django on the other hand, with its built-in features and modules, offers far less freedom and control.
+
+Community
+One of the main advantages of Django, is that it has a huge active developer community. This means that if you need help, or when it’s time to scale your app, you will have an easier job finding other developers to join in and start contributing, plus a wealth of useful content already in the public domain. The Flask community is currently not as big, and so information may be harder to come by.
+
+Maturity
+Django is a very mature framework, having seen its first release in 2005. This means that it has gathered numerous extensions, plugins and third party apps covering a wide range of needs. Flask by comparison, is much younger, having been introduced in 2010, so doesn’t have quite the same range of options available to it.
+
+needs of your project:
+
+Size of the project
+The size of your project is a good starting point when selecting a framework. Flask is more suited to smaller, less complicated applications, while Django is designed for larger, more complex, and high-load applications. The future growth plans of your project should also be factored in. While Flask is flexible and highly extensible, you will need to be prepared to create most of the functionality yourself. Django, on the other hand will be easier to scale as it is fully featured out of the box.
+
+Structure
+The structure of your app may dictate which framework you should use. If you have a need for particular tools and libraries, or want a highly customisable framework, Flask will be the best choice. If, however, you don’t require the granular tuning that Flask allows, Django will save you a lot of time and money in development hours with its myriad of built-in features and reasonable defaults.
 
 database
 ===
