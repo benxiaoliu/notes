@@ -207,7 +207,7 @@ What is Flask? a microframework for Python based on Werkzeug, Jinja 2 and good i
 What is Tornado? A Python web framework and asynchronous networking library, originally developed at FriendFeed. By using non-blocking network I/O, Tornado can scale to tens of thousands of open connections, making it ideal for long polling, WebSockets, and other applications that require a long-lived connection to each user.
 
 Tornado:
-The integration with other frameworks and libraries is also possible: Twisted, asyncio or even WSGI applications. Tornado’s features:
+Tornado is a Python web framework and asynchronous networking library,The integration with other frameworks and libraries is also possible: Twisted, asyncio or even WSGI applications. Tornado’s features:
 
 offers a lot of generic classes that can be used for creating the application, e.g. Router, or SocketHandler for websockets,
 
