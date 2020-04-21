@@ -282,6 +282,55 @@ you can even use python
 
 https://microsoft.sharepoint.com/:p:/r/teams/stca/ipe/_layouts/15/Doc.aspx?sourcedoc=%7B32C3A3BA-8E48-4AA9-851A-ECCDA5450056%7D&file=Introduction%20to%20COSMOS%20.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1
 
+What is COSMOS:
+* Repository for data : Web Index; Bing Traffic Logs; Toolbar Logs; IE Logs; Structured Data Feeds
+* Platform for computation: Analyze success of feature flighting; Build data sets for relevance experimentation; Generate list of URL’s to include in index; 
+
+Cosmos in Context…
+======
+
+It’s a Map-Reduce+ system​
+
+Similar to GFS/Map-Reduce/Sawzall/Dremel (Google)​
+
+Similar to Hadoop/Pig/Hive ​
+
+It’s a Big Data No-SQL store​
+
+Built and used exclusively internal to Microsoft​
+
+Used across company, but developed by Bing organization
+
+Data drives search and advertising​
+
+Web pages: Links, text, titles, etc​
+
+Search logs: What people searched for, what they clicked, etc​
+
+IE logs: What sites people visit, the browsing order, etc​
+
+Advertising logs: What ads do people click on, what was shown, etc​
+
+We generate about 2 PB every day​
+
+SearchUX is hundreds of TB​
+
+Toolbar is many 10s of TB​
+
+Search is hundreds of TB​
+
+Web snapshots are many 10s of TB​
+
+MSN, Hotmail, IE, web, etc…​
+
+COSMOS is the backbone for Bing analysis and relevance​
+
+Click-stream information is imported from many sources and “cooked”​
+
+Queries analyzing user context, click commands, and success are processed​
+
+
+
 Exporting Data From Cosmos Programmatically
 https://microsoft.sharepoint.com/teams/Cosmos/Wiki/Exporting%20Data%20From%20Cosmos%20Programmatically.aspx
 I want to download data from Cosmos, and then push to SQL or Azure DB. What are the best practices to keep in mind?
