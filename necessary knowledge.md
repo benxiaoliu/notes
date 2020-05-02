@@ -416,6 +416,27 @@ why use d3.js
 * NLP course
 * ML course
 
+unit test
+===
+
+Unit Testing Tips
+1. Find a tool/framework for your language.
+2. Do not create test cases for everything. Instead, focus on the tests that impact the behavior of the system.
+3. Isolate the development environment from the test environment.
+4. Use test data that is close to that of production.
+5. Before fixing a defect, write a test that exposes the defect. Why? First, you will later be able to catch the defect if you 6. do not fix it properly. Second, your test suite is now more comprehensive. Third, you will most probably be too lazy to write the test after you have already fixed the defect.
+7. Write test cases that are independent of each other. For example, if a class depends on a database, do not write a case that interacts with the database to test the class. Instead, create an abstract interface around that database connection and implement that interface with a mock object.
+8. Aim at covering all paths through the unit. Pay particular attention to loop conditions.
+9. Make sure you are using a version control system to keep track of your test scripts.
+10. In addition to writing cases to verify the behavior, write cases to ensure the performance of the code.
+11. Perform unit tests continuously and frequently.
+
+
+white box test
+===
+
+Unit Testing Method is performed by using the White Box Testing method.
+in which the internal structure/design/implementation of the item being tested is known to the tester. The tester chooses inputs to exercise paths through the code and determines the appropriate outputs.
 
 
 
