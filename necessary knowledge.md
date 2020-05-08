@@ -439,4 +439,8 @@ Unit Testing Method is performed by using the White Box Testing method.
 in which the internal structure/design/implementation of the item being tested is known to the tester. The tester chooses inputs to exercise paths through the code and determines the appropriate outputs.
 
 
-
+DynamoDB
+===
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+Other than the primary key, the table is schemaless, which means that neither the attributes nor their data types need to be defined beforehand. Each item can have its own distinct attributes.
+DynamoDB supports nested attributes up to 32 levels deep.
