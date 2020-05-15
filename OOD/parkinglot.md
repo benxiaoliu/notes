@@ -144,8 +144,8 @@ class ParkingAttendant(Account):
     
 ======================================================================================
 class ParkingSpot(ABC):
-  def __init__(self, number, parking_spot_type):
-    self.__number = number
+  def __init__(self, identifier, parking_spot_type):
+    self.__identifier = identifier
     self.__free = True
     self.__vehicle = None
     self.__parking_spot_type = parking_spot_type
@@ -164,28 +164,28 @@ class ParkingSpot(ABC):
 
 # extend ParkingSpot
 class HandicappedSpot(ParkingSpot):
-  def __init__(self, number):
-    super().__init__(number, ParkingSpotType.HANDICAPPED)
+  def __init__(self, identifier):
+    super().__init__(identifier, ParkingSpotType.HANDICAPPED)
 
 
 class CompactSpot(ParkingSpot):
-  def __init__(self, number):
-    super().__init__(number, ParkingSpotType.COMPACT)
+  def __init__(self, identifier):
+    super().__init__(identifier, ParkingSpotType.COMPACT)
 
 
 class LargeSpot(ParkingSpot):
-  def __init__(self, number):
-    super().__init__(number, ParkingSpotType.LARGE)
+  def __init__(self, identifier):
+    super().__init__(identifier, ParkingSpotType.LARGE)
 
 
 class MotorbikeSpot(ParkingSpot):
-  def __init__(self, number):
-    super().__init__(number, ParkingSpotType.MOTORBIKE)
+  def __init__(self, identifier):
+    super().__init__(identifier, ParkingSpotType.MOTORBIKE)
 
 
 class ElectricSpot(ParkingSpot):
-  def __init__(self, number):
-    super().__init__(number, ParkingSpotType.ELECTRIC)
+  def __init__(self, identifier):
+    super().__init__(identifier, ParkingSpotType.ELECTRIC)
 
 
 ===================================================================================
@@ -218,6 +218,48 @@ class Truck(Vehicle):
 
 # Similarly we can define classes for Motorcycle and Electric vehicles
 
+==============================================================================
+class ParkingDisplayBoard:
+  def __init__(self, id):
+    self.__id = id
+    self.__handicapped_free_spot = None
+    self.__compact_free_spot = None
+    self.__large_free_spot = None
+    self.__motorbike_free_spot = None
+    self.__electric_free_spot = None
+
+  def show_empty_spot_number(self):
+    message = ""
+    if self.__handicapped_free_spot.is_free():
+      message += "Free Handicapped: " + self.__handicapped_free_spot.get_number()
+    else:
+      message += "Handicapped is full"
+    message += "\n"
+
+    if self.__compact_free_spot.is_free():
+      message += "Free Compact: " + self.__compact_free_spot.get_number()
+    else:
+      message += "Compact is full"
+    message += "\n"
+
+    if self.__large_free_spot.is_free():
+      message += "Free Large: " + self.__large_free_spot.get_number()
+    else:
+      message += "Large is full"
+    message += "\n"
+
+    if self.__motorbike_free_spot.is_free():
+      message += "Free Motorbike: " + self.__motorbike_free_spot.get_number()
+    else:
+      message += "Motorbike is full"
+    message += "\n"
+
+    if self.__electric_free_spot.is_free():
+      message += "Free Electric: " + self.__electric_free_spot.get_number()
+    else:
+      message += "Electric is full"
+
+    print(message)
 
 ========================================================================================
 
@@ -232,46 +274,27 @@ class ParkingFloor:
     self.__info_portals = {}
     self.__display_board = ParkingDisplayBoard()
 
-  def add_parking_spot(self, spot):
-    switcher = {
-      ParkingSpotType.HANDICAPPED: self.__handicapped_spots.put(spot.get_number(), spot),
-      ParkingSpotType.COMPACT: __compact_spots.put(spot.get_number(), spot),
-      ParkingSpotType.LARGE: __large_spots.put(spot.get_number(), spot),
-      ParkingSpotType.MOTORBIKE: __motorbike_spots.put(spot.get_number(), spot),
-      ParkingSpotType.ELECTRIC: __electric_spots.put(spot.get_number(), spot),
-    }
-    switcher.get(spot.get_type(), 'Wrong parking spot type')
+  def add_parking_spot(self, spot_identifier, spot_type):
+  	if spot_type == "Handicapped":
+		self.__handicapped_spots[spot_identifier] = HandicappedSpot(spot_identifier)
+	elif spot_type == "Compact":
+		self.__compact_spots[spot_identifier] = CompactSpot(spot_identifier)
+	...
 
-  def assign_vehicleToSpot(self, vehicle, spot):
+# after assign vehicle, need to update dispaly board
+  def assign_vehicleToSpot(self, vehicle):  
+    if vehicle == VehicleType.CAR:
+    	
     spot.assign_vehicle(vehicle)
-    switcher = {
-      ParkingSpotType.HANDICAPPED: self.update_display_board_for_handicapped(spot),
-      ParkingSpotType.COMPACT: self.update_display_board_for_compact(spot),
-      ParkingSpotType.LARGE: self.update_display_board_for_large(spot),
-      ParkingSpotType.MOTORBIKE: self.update_display_board_for_motorbike(spot),
-      ParkingSpotType.ELECTRIC: self.update_display_board_for_electric(spot),
-    }
-    switcher(spot.get_type(), 'Wrong parking spot type!')
+    update_display_board(spot)
+    self.__display_board.show_empty_spot_number()
+
 
   def update_display_board_for_handicapped(self, spot):
-    if self.__display_board.get_handicapped_free_spot().get_number() == spot.get_number():
-      # find another free handicapped parking and assign to display_board
-      for key in self.__handicapped_spots:
-        if self.__handicapped_spots.get(key).is_free():
-          self.__display_board.set_handicapped_free_spot(
-            self.__handicapped_spots.get(key))
+
 
       self.__display_board.show_empty_spot_number()
 
-  def update_display_board_for_compact(self, spot):
-    if self.__display_board.get_compact_free_spot().get_number() == spot.get_number():
-      # find another free compact parking and assign to display_board
-      for key in self.__compact_spots.key_set():
-        if self.__compact_spots.get(key).is_free():
-          self.__display_board.set_compact_free_spot(
-            self.__compact_spots.get(key))
-
-      self.__display_board.show_empty_spot_number()
 
   def free_spot(self, spot):
     spot.remove_vehicle()
@@ -285,7 +308,6 @@ class ParkingFloor:
 
     switcher(spot.get_type(), 'Wrong parking spot type!')
  
-
 
 
 ```
