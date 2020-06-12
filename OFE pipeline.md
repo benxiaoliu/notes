@@ -1,4 +1,49 @@
-Obline Feature Extraction pipeline
+Online Feature Extraction pipeline
+
+OFE: Bing online feature extraction data, where we get features to train with
+Deep dive: here
+https://www.bingwiki.com/wiki/OFE_Data_Process_Pipeline
+https://www.bingwiki.com/wiki/OFE_Pipeline_Developers
+https://www.bingwiki.com/wiki/OFE_Ranking_Experiments
+Sync up latest OFE pipeline code:
+https://www.bingwiki.com/wiki/Relevance_Git_Ramp_Up
+Key scope script:
+                        i.      https://msasg.visualstudio.com/Bing_and_IPG/_git/RelevanceFundamentals/?path=%2Fprivate%2FOFE%2FScopeScripts%2FMergeLogs%2FMerge.script&version=GBmaster
+
+Sangam deployment:
+                        i.      https://microsoft.sharepoint.com/teams/CoreDataPlatform/SitePages/Home.aspx
+
+                      ii.      \\lsstc146\searchgold\deploy\builds\data\Sangam_Partners\Sangam-Prod1\RankFun_OFE\OFEEnv
+
+To get this, you need to sync SearchGold, how?
+SearchGold: data depot where Bing online service consume: Wiki: here
+What’s scope?
+Cosmos: big data process platform
+                        i.      Wiki: https://microsoft.sharepoint.com/teams/Cosmos/SitePages/Home.aspx
+
+                      ii.      Relevance VC: relevance VC is our VC to run jobs
+
+https://cosmos09.osdinfra.net/cosmos/relevance/
+Wiki: here
+                    iii.      Scope: language build on cosmos
+
+Wiki: https://microsoft.sharepoint.com/teams/Cosmos/SitePages/Scope.aspx
+ScopeStudio: VS plugin for Scope job development
+ScopeTutorial: learn scope language step by step
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Model training:
