@@ -450,3 +450,14 @@ DynamoDB uses the partition key value as input to an internal hash function. The
 The partition key of an item is also known as its hash attribute. The term hash attribute derives from the use of an internal hash function in DynamoDB that evenly distributes data items across partitions, based on their partition key values.
 
 The sort key of an item is also known as its range attribute. The term range attribute derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.
+
+what would happen when you input an URL in a browser?
+===
+https://juejin.im/post/5d5e795ff265da03e275f29e
+
+check cache first, if there is valid cache, render directly
+if no, get ip by inquiring DNS
+connect server through TCP 
+transform HTTP message through TCP
+the server dealt with the request and return corresponding response through TCP connection
+browser cache response resource, parse and render response
