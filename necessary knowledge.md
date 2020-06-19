@@ -465,3 +465,13 @@ browser cache response resource, parse and render response
 concurrency
 ===
 In computer science, concurrency is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the final outcome. This allows for parallel execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems. In more technical terms, concurrency refers to the decomposability property of a program, algorithm, or problem into order-independent or partially-ordered components or units.
+
+multi-thread
+===
+process: program or application
+thread: a set of instructions for an unit task, one process has multiple threads
+multi-threading is that the scheduler switch to excute instruction between different thread. since CPU can excute thousands of structions per second, we can't even distinguish it's swithching. in this way, even some thread is blocking, the whole operating system wouldn't be blocked.
+
+
+multi-core, has one CPU, but the CPU has several sets of excute and pipeline 
+multi CPU in an operating system, the most expensive one
