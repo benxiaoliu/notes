@@ -1,3 +1,7 @@
+Charpter one: sort 
+quick sort (give logn space at most)
+not stable [O(nlogn), get by master theory(used in recursive algorithm); space >= logn to store all partition positions] at about 2:00:00 of the vidoe
+
 time complexity/Big O:
 describes the amount of time it takes to run an algorithm. Time complexity is commonly estimated by counting the number of elementary operations(has no relationship with input size, like an add manipution a+b...) performed by the algorithm, then ignore lower..
 
@@ -7,6 +11,14 @@ swap two inegerters a, b efficiently:
 a = a^b
 b = a^b
 a = a^b
+
+mid position without overflow: mid = l + (r-l)/2
+
+if x is a positive integer, a>>1 == a/2
+
+get a random number among M ~ N:  
+M + int((N-M+1)*Math.random())
+Math.random() return a double number between 0-1
 
 
 
