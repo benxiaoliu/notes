@@ -1,3 +1,14 @@
+time complexity/Big O:
+describes the amount of time it takes to run an algorithm. Time complexity is commonly estimated by counting the number of elementary operations(has no relationship with input size, like an add manipution a+b...) performed by the algorithm, then ignore lower..
+
+stable: sequence among elements with the same value won't change  [why need: like sort by age first, and then sort by name. we need to sort based on keeping the first order]
+
+swap two inegerters a, b efficiently:
+a = a^b
+b = a^b
+a = a^b
+
+
 
 Kadane's Algorithm (Maximum sub array problem)
 ===
