@@ -14,7 +14,9 @@ when data size is small, like < 60, since other sort methods like insert sort ha
 Master theorem: used to compute time complexity of recurssion algorithm
 T(n) = aT(n/b) + O(n ** d)
 
-merge sort: TC: nlogn; SC: n (原地缓存法可以实现常数级别 论文级别不要求掌握)
+merge sort: TC: nlogn; SC: n (原地缓存法可以实现常数级别 论文级别不要求掌握) 
+In java, when you pass an array of primitive numbers to sort, it uses quick sort; but if you pass an array of objects, it will use merge sort for stability.
+
 Chartpter2 30:00
 Chartpter2 37:00  recurrsion to iteration
 41:00 why not use recerrsion in actual work: three reasons
@@ -37,7 +39,10 @@ get a random number among M ~ N:
 M + int((N-M+1)*Math.random())
 Math.random() return a double number between 0-1
 
-Charpter two 02:16:00 comparator (tell how to compare)
+Charpter two 02:16:00 comparator (tell how to compare)； problems based on Bucket sort.  (watch again after finish java videos!!)
+
+Charpter two 03:00:00  KMP algorithm
+
 
 Kadane's Algorithm (Maximum sub array problem)
 ===
