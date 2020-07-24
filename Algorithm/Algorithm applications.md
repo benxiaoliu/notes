@@ -41,9 +41,19 @@ Math.random() return a double number between 0-1
 
 Charpter two 02:16:00 comparator (tell how to compare)； problems based on Bucket sort.  (watch again after finish java videos!!)
 
-Charpter two 03:00:00  KMP algorithm
+Charpter two 03:00:00  KMP algorithm: if string1 contain string2, return the begin index in string1
+每个子字符串 前缀跟后缀的最大匹配
 
+charpter three 17:36     manacher algorithm 在一个字符串中 找它最长的回文子串
+子串，子数组必须连续 子序列可以不连续
+在每个字符两边加入特殊字符串 解决奇偶回文问题 #1#2#3#2#1#
+记录最又回文边界来加速
 
+charpter three 01:46:15 bfprt算法 一个数组中O(n)求第k小/大的数
+先选中位数的中位数作为划分值
+
+charpter three 02:35:06 基数排序  0，1，2...9十个先进先出队列桶，按个位，十位，百位...各自入桶出桶，最后结果就是有序的
+charpter three 03:00:06 希尔排序
 Kadane's Algorithm (Maximum sub array problem)
 ===
 ```python
