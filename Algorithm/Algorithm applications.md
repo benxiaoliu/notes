@@ -53,7 +53,16 @@ charpter three 01:46:15 bfprt算法 一个数组中O(n)求第k小/大的数
 先选中位数的中位数作为划分值
 
 charpter three 02:35:06 基数排序  0，1，2...9十个先进先出队列桶，按个位，十位，百位...各自入桶出桶，最后结果就是有序的
-charpter three 03:00:06 希尔排序
+charpter three 03:00:06 希尔排序： 先选择比较大的步长 递减到1 以实现步长为1时需要交换的次数较小  O(nlogn)
+插入排序是步长位1的希尔排序
+
+charpter three 03:10:00 关于栈跟队列的题
+charpter three 3:34:00用两个栈实现队列的两个原则： 1. 倒push栈的时候必须全部倒完 2.只有pop栈为空的时候才能往里倒
+charpter three 3:35:00 用两个队列实现栈， 每次要pop的时候，把前面所有元素入另外一个队列，最后一个不出，返回， 然后swap queue跟help数组的引用。每次都这样。
+charpter four  00:07:00  hash函数
+hash函数 当数据量大的时候 会均分
+一致性哈希：即均匀分布 又自由增删结点
+虚拟节点+路由表（机器对应的虚拟结点， 用来确定放在哪台机器上） 环上放虚拟结点。 解决增减机器负载均衡问题
 Kadane's Algorithm (Maximum sub array problem)
 ===
 ```python
