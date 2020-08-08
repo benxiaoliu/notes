@@ -42,7 +42,7 @@ Math.random() return a double number between 0-1
 Charpter two 02:16:00 comparator (tell how to compare)； problems based on Bucket sort.  (watch again after finish java videos!!)
 
 Charpter two 03:00:00  KMP algorithm: if string1 contain string2, return the begin index in string1
-每个子字符串 前缀跟后缀的最大匹配
+每个子字符串 前缀跟后缀的最大匹配 next[i]表示 string2[i]之前的字符串（长度要-1）的前后缀最大匹配，如 abcabcd next[6] = 3
 
 charpter three 17:36     manacher algorithm 在一个字符串中 找它最长的回文子串
 子串，子数组必须连续 子序列可以不连续
@@ -63,6 +63,7 @@ charpter four  00:07:00  hash函数
 hash函数 当数据量大的时候 会均分
 一致性哈希：即均匀分布 又自由增删结点
 虚拟节点+路由表（机器对应的虚拟结点， 用来确定放在哪台机器上） 环上放虚拟结点。 解决增减机器负载均衡问题
+
 Kadane's Algorithm (Maximum sub array problem)
 ===
 ```python
