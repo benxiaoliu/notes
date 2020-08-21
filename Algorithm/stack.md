@@ -22,3 +22,28 @@ class Solution {
     return res;
     }
 }
+
+
+496. Next Greater Element I
+You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
+
+The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
+
+```java
+class Solution {
+    
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums){
+            while(!stack.isEmpty() && stack.peek() < num){
+                map.put(stack.pop(), num);
+            }
+            stack.push(num);
+        }
+        for (int i = 0; i < findNums.length; i++){
+            findNums[i] = map.getOrDefault(findNums[i], -1);
+        }
+        return findNums;
+    }
+}
