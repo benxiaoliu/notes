@@ -57,7 +57,7 @@ Explanation: 342 + 465 = 807.
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-'''注意随时把carry带上，注意每次cur = cur.next'''
+'''注意随时把carry带上，注意每次cur = cur.next,之前还要确保cur不是None'''
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         cur = head = ListNode()
