@@ -3,11 +3,71 @@ template
 ```python
 dfs():
     if ...
-        return
+        return True
     for ...
-        dfs()
+        if ...:
+            return dfs()
+        xxx = False
+    return False
+```
+
+698. Partition to K Equal Sum Subsets
+======
+
+Given an array of integers nums and a positive integer k, find whether it's possible to divide this array into k non-empty subsets whose sums are all equal.
+
+Example 1:
+
+Input: nums = [4, 3, 2, 3, 5, 2, 1], k = 4
+Output: True
+Explanation: It's possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
+ 
+
+Note:
+
+1 <= k <= len(nums) <= 16.
+0 < nums[i] < 10000.
+```python3
+'''
+backtrack
+
+'''
+
+class Solution:
+    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
+        
+        maxNum = float("-inf")
+        totalSum = 0
+        for num in nums:
+            maxNum = max(maxNum, num)
+            totalSum += num
+        targetSum = int(totalSum / k)
+        l = len(nums)
+        
+        if maxNum > targetSum or totalSum % k != 0:
+            return False
+        
+        def backtrack(k, visited, curSum, idx_to_check):
+            if k == 0:
+                return True
+            if curSum == targetSum:
+                return backtrack(k-1, visited, 0, 0)
+            for i in range(idx_to_check, l):
+                if not visited[i] and curSum + nums[i] <= targetSum:
+                    visited[i] = 1
+                    if backtrack(k, visited, curSum+nums[i], i+1):
+                        return True
+                    visited[i] = False  # 如果以上尝试不能一路到底找到正确答案， 一步步改为False
+            return False # 把上一层visited改为False，上一层保留了previous i以及k 信息
+                
+        return backtrack(k, [0]*len(nums), 0, 0)
+        
+            
+            
 ```
 491. Increasing Subsequences
+=======
+
 Medium
 Given an integer array, your task is to find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2.
 
@@ -51,6 +111,8 @@ class Solution(object):
 ```
 
 140. Word Break II
+========
+
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
 
 Note:
@@ -121,6 +183,8 @@ class Solution(object):
 ```
 
 46. Permutations
+======
+
 Given a collection of distinct integers, return all possible permutations.
 
 Example:
@@ -154,6 +218,8 @@ class Solution(object):
             self.dfs(nums[:i]+nums[i+1:], path+[nums[i]], res)
 ```
 47. Permutations II
+====
+
 Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 
 Example:
@@ -189,6 +255,8 @@ class Solution(object):
 ```
 
 131. Palindrome Partitioning
+======
+
 
 Given a string s, partition s such that every substring of the partition is a palindrome.
 
@@ -227,6 +295,8 @@ class Solution(object):
 ```
 
 282. Expression Add Operators
+===
+
 
 Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
 
@@ -282,6 +352,7 @@ class Solution(object):
 ```
 
 489. Robot Room Cleaner
+=====
 
 Given a robot cleaner in a room modeled as a grid.
 
