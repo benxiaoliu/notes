@@ -37,7 +37,7 @@ class Solution(object):  # O（nlogn）
         
         root = Node(nums[-1])
         res = [0]  # 最后一个肯定是0
-        
+        # 从后往前计算，这样既能累积，又能一次性计算出当前node的result
         for i in range(len(nums)-2, -1, -1):  # O（n）
             res.append(self.insert_node(nums[i], root))  # O(logn)
         
@@ -47,13 +47,13 @@ class Solution(object):  # O（nlogn）
     def insert_node(self, val, root):
         count = 0  #要插入的结点 在当前树中有多少个比他小的结点
         
-        while True:
+        while True:  # 直到找到应该插入的位置才跳出
             if val <= root.val:
                 root.count += 1
                 if not root.left:
                     root.left = Node(val)
-                    break  # break了 root还是上一个值，不是当前的val
-                root = root.left
+                    break  
+                root = root.left # 继续往下找
             else:
                 count += root.count
                 if not root.right:
