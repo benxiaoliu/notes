@@ -141,3 +141,137 @@ public boolean isMatch(String s, String p) {
 }
 }
 ```
+
+1143. Longest Common Subsequence
+=====
+
+Given two strings text1 and text2, return the length of their longest common subsequence.
+
+A subsequence of a string is a new string generated from the original string with some characters(can be none) deleted without changing the relative order of the remaining characters. (eg, "ace" is a subsequence of "abcde" while "aec" is not). A common subsequence of two strings is a subsequence that is common to both strings.
+
+ 
+
+If there is no common subsequence, return 0.
+
+ 
+
+Example 1:
+
+Input: text1 = "abcde", text2 = "ace" 
+Output: 3  
+Explanation: The longest common subsequence is "ace" and its length is 3.
+Example 2:
+
+Input: text1 = "abc", text2 = "abc"
+Output: 3
+Explanation: The longest common subsequence is "abc" and its length is 3.
+Example 3:
+
+Input: text1 = "abc", text2 = "def"
+Output: 0
+Explanation: There is no such common subsequence, so the result is 0.
+ 
+
+Constraints:
+
+1 <= text1.length <= 1000
+1 <= text2.length <= 1000
+The input strings consist of lowercase English characters only.
+
+```python3
+'''
+     text2 a c e
+         0 1 2 3
+text1 0  0 0 0 0
+    a 1  0 1 1 1
+    b 2  0 1 1 1
+    c 3  0 1 2 2
+    d 4  0 1 2 2
+    e 5  0 1 2 3
+'''
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        # dp[i][j] reprents the length of the longest common subsequence for text1[:i] and text2[:j]
+        m, n = len(text1) + 1, len(text2) + 1
+        dp = [[0] * n for _ in range(m)]
+        res = 0
+        for i in range(1, m):  # start from one char
+            for j in range(1, n):
+                if text1[i-1] == text2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i][j-1], dp[i-1][j])
+                res = max(res, dp[i][j])                                                        
+        return res
+```
+
+
+
+718. Maximum Length of Repeated Subarray
+===
+
+Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.
+
+Example 1:
+
+Input:
+A: [1,2,3,2,1]
+B: [3,2,1,4,7]
+Output: 3
+Explanation: 
+The repeated subarray with maximum length is [3, 2, 1].
+ 
+
+Note:
+
+1 <= len(A), len(B) <= 1000
+0 <= A[i], B[i] < 100
+```python3
+'''
+当A[I] == b[j] 时， 因为需要subarray，所以必须上一个字符相等 可匹配 ，当前case才能叠加上一步的common array
+
+注意变量的声明 如果申明 dp = cur_dp = [0] * len_A, 修改dp[2] = 20, cur_dp[2]也会变成20，所以不能一起申明赋值
+    A 1 0 0 0 1
+    0 1 2 3 4 5
+B 0 0 0 0 0 0 0
+1 1 0 1 0 0 0 1
+0 2 0 0 2 1 1 0
+0 3 0 0 1 3 2 0
+1 4 0 1 0 0 0 3
+1 5 0 1 0 0 0 1
+
+O(n) space, 7000ms...   
+def findLength(self, A: List[int], B: List[int]) -> int:
+        len_A = len(A) + 1
+        len_B = len(B) + 1
+        cur_dp = [0] * len_A
+        dp = [0] * len_A
+        res = 0
+      
+        for i in range(1, len_B):
+            for j in range(1, len_A):
+                if B[i-1] == A[j-1]:                   
+                    cur_dp[j] = dp[j-1] + 1
+                else:
+                    cur_dp[j] = 0  # 此处也要修改，不然会保留原始值                
+                res = max(res, cur_dp[j])           
+            dp = cur_dp[:]
+        return res
+'''
+# 6248ms
+class Solution:
+    def findLength(self, A: List[int], B: List[int]) -> int:
+        len_A = len(A) + 1
+        len_B = len(B) + 1
+        res = 0
+        dp = [[0] * len_A for _ in range(len_B)]
+        for i in range(1, len_B):
+            for j in range(1, len_A):
+                if B[i-1] == A[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                    res = max(res, dp[i][j])
+        return res
+        
+        
+```
