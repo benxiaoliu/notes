@@ -1,4 +1,4 @@
-###739. Daily Temperatures
+### 739. Daily Temperatures
 
 Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.
 
@@ -25,8 +25,8 @@ class Solution {
 }
 ```
 
-496. Next Greater Element I
-===
+### 496. Next Greater Element I
+
 
 You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
 
@@ -53,8 +53,8 @@ class Solution {
 }
 ```
 
-150. Evaluate Reverse Polish Notation
-====
+### 150. Evaluate Reverse Polish Notation
+
 
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
@@ -102,8 +102,7 @@ class Solution:
 ```
 
 
-636. Exclusive Time of Functions
-=====
+### 636. Exclusive Time of Functions
 
 On a single threaded CPU, we execute some functions.  Each function has a unique id between 0 and N-1.
 
