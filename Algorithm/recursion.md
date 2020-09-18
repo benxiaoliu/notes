@@ -60,3 +60,61 @@ class Solution(object):
         return root
         
 ```
+### 105. Construct Binary Tree from Preorder and Inorder Traversal
+Given preorder and inorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+   
+   
+ ```python3
+ 
+ # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+'''
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+
+no duplicates, 记录inorder中数的index，根据这个index确定左右子树 在preoder inorder中的index
+preorder第一个元素就是根结点
+
+递归找root的左子树右子树 
+'''python3
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        inoder_idx_map = {}
+        for i, num in enumerate(inorder):
+            inoder_idx_map[num] = i
+            
+            
+        def build(in_start, in_end, pre_start, pre_end):
+            if in_start > in_end or pre_start > pre_end:
+                return None
+            root = TreeNode(preorder[pre_start])
+            root_idx_in_inorder = inoder_idx_map[preorder[pre_start]]
+            root.left = build(in_start, root_idx_in_inorder-1, pre_start+1, pre_start+(root_idx_in_inorder-in_start))
+            root.right = build(root_idx_in_inorder+1, in_end, pre_start+root_idx_in_inorder-in_start + 1, pre_end)
+            return root
+        
+        
+        return build(0, len(inorder)-1, 0, len(preorder)-1)
+        
+ ```
+
