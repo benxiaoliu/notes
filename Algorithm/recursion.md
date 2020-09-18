@@ -157,6 +157,55 @@ class Solution:
             
             return root
         return build(0, len(inorder)-1, 0, len(postorder)-1)
-        
+   ```
+   
+   
+###  1008. Construct Binary Search Tree from Preorder Traversal
 
-python
+Return the root node of a binary search tree that matches the given preorder traversal.
+
+(Recall that a binary search tree is a binary tree where for every node, any descendant of node.left has a value < node.val, and any descendant of node.right has a value > node.val.  Also recall that a preorder traversal displays the value of the node first, then traverses node.left, then traverses node.right.)
+
+It's guaranteed that for the given test cases there is always possible to find a binary search tree with the given requirements.
+
+Example 1:
+
+Input: [8,5,1,7,10,12]
+Output: [8,5,10,1,7,null,12]
+
+ ![Avator](https://assets.leetcode.com/uploads/2019/03/06/1266.png)
+
+Constraints:
+
+1 <= preorder.length <= 100
+1 <= preorder[i] <= 10^8
+The values of preorder are distinct.
+
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
+        inorder = sorted(preorder)
+        inoder_idx_map = {}
+        for i, num in enumerate(inorder):
+            inoder_idx_map[num] = i
+           
+           
+        def build(in_start, in_end, pre_start, pre_end):
+            if in_start > in_end or pre_start > pre_end:
+                return None
+            root = TreeNode(preorder[pre_start])
+            root_idx_in_inorder = inoder_idx_map[preorder[pre_start]]
+            root.left = build(in_start, root_idx_in_inorder-1, pre_start+1, pre_start+(root_idx_in_inorder-in_start))
+            root.right = build(root_idx_in_inorder+1, in_end, pre_start+root_idx_in_inorder-in_start + 1, pre_end)
+            return root
+       
+       
+        return build(0, len(inorder)-1, 0, len(preorder)-1)
+```
+        
