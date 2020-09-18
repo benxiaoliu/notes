@@ -117,4 +117,49 @@ class Solution:
         return build(0, len(inorder)-1, 0, len(preorder)-1)
         
  ```
+ 
+ 
+### 106. Construct Binary Tree from Inorder and Postorder Traversal
 
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        inorder_idx_map = {}
+        for i, num in enumerate(inorder):
+            inorder_idx_map[num] = i
+        
+        def build(in_s, in_e, pos_s, pos_e):
+            if in_s > in_e or pos_s > pos_e:
+                return None
+            root = TreeNode(postorder[pos_e])
+            root_idx_in_inoder = inorder_idx_map[root.val]
+            root.left = build(in_s, root_idx_in_inoder-1, pos_s, pos_s + (root_idx_in_inoder - in_s) - 1)
+            root.right = build(root_idx_in_inoder + 1, in_e, pos_s + (root_idx_in_inoder - in_s), pos_e - 1)
+            
+            return root
+        return build(0, len(inorder)-1, 0, len(postorder)-1)
+        
+
+python
