@@ -177,9 +177,13 @@ Output: [8,5,10,1,7,null,12]
 
 Constraints:
 
+
 1 <= preorder.length <= 100
+
 1 <= preorder[i] <= 10^8
+
 The values of preorder are distinct.
+
 
 ```python3
 # Definition for a binary tree node.
