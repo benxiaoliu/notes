@@ -1,4 +1,4 @@
-939. Minimum Area Rectangle
+### 939. Minimum Area Rectangle
 
 Given a set of points in the xy-plane, determine the minimum area of a rectangle formed from these points, with sides parallel to the x and y axes.
 
@@ -40,7 +40,7 @@ class Solution(object):
         return ans if ans < float('inf') else 0
  ```
  
- 380. Insert Delete GetRandom O(1)
+ ### 380. Insert Delete GetRandom O(1)
 
 Design a data structure that supports all following operations in average O(1) time.
 
@@ -131,7 +131,7 @@ class RandomizedSet(object):
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
 ```
-49. Group Anagrams
+### 49. Group Anagrams
 
 Given an array of strings, group anagrams together.
 
@@ -160,7 +160,7 @@ class Solution(object):
         return d.values()
 ```
 
-582. Kill Process
+### 582. Kill Process
 
 Given n processes, each process has a unique PID (process id) and its PPID (parent process id). 
 Each process only has one parent process, but may have one or more children processes. This is just like a tree structure. Only one process has PPID that is 0, which means this process has no parent process. All the PIDs will be distinct positive integers.
@@ -200,7 +200,7 @@ class Solution(object):
         return res
 
 ```
-895. Maximum Frequency Stack
+### 895. Maximum Frequency Stack
 
 Implement FreqStack, a class which simulates the operation of a stack-like data structure.
 FreqStack has two functions:
@@ -255,7 +255,7 @@ class FreqStack(object):
         return num
 ```
 
-299. Bulls and Cows
+### 299. Bulls and Cows
 
 You are playing the following Bulls and Cows game with your friend: You write down a number and ask your friend to guess what the number is. Each time your friend makes a guess, you provide a hint that indicates how many digits in said guess match your secret number exactly in both digit and position (called "bulls") and how many digits match the secret number but locate in the wrong position (called "cows"). Your friend will use successive guesses and hints to eventually derive the secret number.
 Write a function to return a hint according to the secret number and friend's guess, use A to indicate the bulls and B to indicate the cows. 
@@ -296,7 +296,7 @@ class Solution(object):
         return str(bulls) + 'A' + str(cows) + 'B'
 ```
 
-535. Encode and Decode TinyURL
+### 535. Encode and Decode TinyURL
 
 Note: This is a companion problem to the System Design problem: Design TinyURL.
 TinyURL is a URL shortening service where you enter a URL such as https://leetcode.com/problems/design-tinyurl and it returns a short URL such as http://tinyurl.com/4e9iAk.
@@ -331,4 +331,53 @@ class Codec:
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
 # codec.decode(codec.encode(url))
+```
+
+
+### 3. Longest Substring Without Repeating Characters
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Example 4:
+
+Input: s = ""
+Output: 0
+ 
+
+Constraints:
+
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.
+
+```python3
+'''
+一直维持当前的substring没有重复的字符 一旦遇到 并且大于等于！！当前substring index！！！就将substring的start变为该重复字母上一次的index（记录在hashmap中，每个元素都要保持更新）
+res每次与当前substring比较 最后得到最大值
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        usedChar = {}
+        res, start = 0, 0
+        for i, c in enumerate(s):
+            if c in usedChar and usedChar[c] >= start:
+                start = usedChar[c] + 1
+            usedChar[c] = i
+            res = max(res, i - start + 1)
+        return res                              
 ```
