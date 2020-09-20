@@ -24,6 +24,67 @@ class Solution {
     }
 }
 ```
+### 9/20 mock
+```python3
+'''
+ [73, 74, 75, 71, 69, 72, 76, 73]
+ [0,  1,  2,   3,  4,  5,  6,  7]
+ [1,  1,       2    1       4     ]
+ [1,  1,   4,  2, 1,   1,  0,  0]
+ 
+ Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
+ 
+ idea:
+ ascdending index end : 0~2 75
+ desc : 2~4
+ ascd: 4~7  
+ 
+ res [1, 1]
+ res = [1, 1, ]
+ 
+ [ , ]
+ [74]
+ 
+ mock心得：没想法的时候往data structure 和常用算法上想 能不能用这个解
+          在给demo和写代码之前就先把最核心需要思考的逻辑写下来 if stack[-1] > cur: stack.push(cur)
+          
+          按逻辑写完再看看能不能优化代码结构 合并挑出共同的部分写在condition外面
+          
+          根据index 可以得到value，所以不用同时存 index跟value
+          
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        stack = []
+        res = [0 for _ in range(len(T))]
+        
+        for i, t in enumerate(T):
+            if not stack or stack[-1][0] > t:
+                stack.append((t, i))
+            else:
+                while stack and stack[-1][0] < t:
+                    pre_t, pre_i = stack.pop()
+                    res[pre_i] = i - pre_i
+                stack.append((t, i))
+                
+        return res
+'''
+# 改进code
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        stack = []
+        res = [0 for _ in range(len(T))]
+        
+        for i, t in enumerate(T):
+            while stack and T[stack[-1]] < t:
+                pre_i = stack.pop()
+                res[pre_i] = i - pre_i
+            stack.append(i)
+                
+        return res
+    
+    # time O(n)
+    # space  O(n)      
+```
 
 ### 496. Next Greater Element I
 
