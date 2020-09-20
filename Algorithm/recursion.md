@@ -212,4 +212,48 @@ class Solution:
        
         return build(0, len(inorder)-1, 0, len(preorder)-1)
 ```
+  
+  
+17. Letter Combinations of a Phone Number
+
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+![Avator](https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png)
+
+Example:
+
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+Note:
+
+Although the above answer is in lexicographical order, your answer could be in any order you want.
         
+```python3
+'''
+234 -> 
+c1: a b c:
+   c2: d e f:
+      c3:  g h i:
+            res.append(c1c2c3)
+    
+
+'''
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        dic = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        res = []
+        
+        if not digits:
+            return []
+        
+        def addChar(pre, idx):
+            if idx == len(digits):
+                res.append(pre)
+                return
+            for c in dic[digits[idx]]:
+                addChar(pre + c, idx + 1)
+                
+        addChar("", 0)
+        return res                            
+```
