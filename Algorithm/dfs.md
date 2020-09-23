@@ -45,3 +45,181 @@ class Solution:
                 if dfs((i,j), None): return True
         return False 
 ```
+
+#### DFS + Stack
+
+### 772. Basic Calculator III
+
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+
+The expression string contains only non-negative integers, +, -, *, / operators , open ( and closing parentheses ) and empty spaces . The integer division should truncate toward zero.
+
+You may assume that the given expression is always valid. All intermediate results will be in the range of [-2147483648, 2147483647].
+
+Some examples:
+
+"1 + 1" = 2
+" 6-4 / 2 " = 4
+"2*(5+5*2)/3+(6/2+8)" = 21
+"(2+6* 3+5- (3*14/7+2)*5)+3"=-12
+ 
+
+Note: Do not use the eval built-in library function.
+
+```python 3
+class Solution:
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        s = s + "$"  # 为了防止最后的数无法参与运算， 因为只有遇到数字，...之外的 才会去计算
+        def dfs(stack, i):
+            num = 0  # 将要操作的数
+            operator = '+'  # 将要操作的数之前的运算符，最初默认为 +
+            while i < len(s):
+                c = s[i]
+                if c == " ":
+                    i += 1
+                    continue  
+                if c.isdigit():
+                    num = 10 * num + int(c)
+                    i += 1
+                elif c == '(':
+                    num, i = dfs([], i+1)  # 计算括号里的
+                else:  # 碰到运算符时才计算先前的num,使用的也是旧的，num之前那个operator
+                    if operator == '+':  # 这里是operator 不是c 一定要注意！！！！！！！
+                        stack.append(num)  # stack 里面只放 用来计算和的数，遇到乘或除的时候 pop一个计算出 最后用来计算和的数
+                    if operator == '-':
+                        stack.append(-num) 
+                    if operator == '*':
+                        stack.append(stack.pop() * num)
+                    if operator == '/':
+                        stack.append(int(float(stack.pop()) / num))
+                        
+                    num = 0  # 遇到运算符 把当前数计算完之后， 将下一个要计算的数重置为0
+                    i += 1
+                    operator = c  # 将下一个要操作的数的operator修改为
+                    
+                    if c == ')':
+                        return sum(stack), i  # 只有碰到 ）才同时返回index, i 在上面已经加一了！！
+                    
+                    
+                    
+            return sum(stack)  # 整个结束计算 返回sum
+        return dfs([], 0)
+```
+
+### 227. Basic Calculator II (与dfs 无关，为了比较放在这)
+
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
+
+Example 1:
+
+Input: "3+2*2"
+Output: 7
+Example 2:
+
+Input: " 3/2 "
+Output: 1
+Example 3:
+
+Input: " 3+5 / 2 "
+Output: 5
+Note:
+
+You may assume that the given expression is always valid.
+Do not use the eval built-in library function.
+
+```python3
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        operator = '+'
+        num = 0
+        s += '#'
+        for c in s:
+            if c == ' ':
+                continue
+            elif c.isdigit():
+                num = num * 10 + int(c)
+            else:
+                if operator == '+':
+                    stack.append(num)
+                elif operator == '-':
+                    stack.append(-num)
+                elif operator == '*': 
+                    stack.append(stack.pop() * num) 
+                else:
+                    stack.append(int(float(stack.pop()) / num) )
+                num = 0
+                operator = c
+        return sum(stack)
+
+```
+
+### 224. Basic Calculator
+
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+
+Example 1:
+
+Input: "1 + 1"
+Output: 2
+Example 2:
+
+Input: " 2-1 + 2 "
+Output: 3
+Example 3:
+
+Input: "(1+(4+5+2)-3)+(6+8)"
+Output: 23
+Note:
+You may assume that the given expression is always valid.
+Do not use the eval built-in library function.
+
+```python3
+class Solution:
+    def calculate(self, s: str) -> int:
+                
+        def dfs(stack, i):
+            num = 0
+            operator = '+'
+            while i < len(s):
+                c = s[i]
+                if c == ' ':
+                    i += 1
+                    continue
+                if c.isdigit():
+                    num = num * 10 + int(c)
+                    i += 1
+                elif c == '(':
+                    num, i = dfs([], i + 1)
+                else:
+                    if operator == '+':
+                        stack.append(num)                      
+                    elif operator == '-':
+                        stack.append(-num)      
+                        
+                    i += 1
+                    num = 0
+                    operator = c  
+                    
+                    if c == ')':
+                        return sum(stack), i
+            return sum(stack)
+                    
+        s += '#'
+        return dfs([], 0)
+        
+                
+        
+            
+```
