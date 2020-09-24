@@ -350,3 +350,68 @@ class Solution(object):
         return dp[target]
     '''
 ```
+
+
+494. Target Sum
+
+You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
+
+Find out how many ways to assign symbols to make sum of integers equal to target S.
+
+Example 1:
+
+Input: nums is [1, 1, 1, 1, 1], S is 3. 
+Output: 5
+Explanation: 
+
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+
+There are 5 ways to assign symbols to make the sum of nums be target 3.
+ 
+
+Constraints:
+
+The length of the given array is positive and will not exceed 20.
+The sum of elements in the given array will not exceed 1000.
+Your output answer is guaranteed to be fitted in a 32-bit integer.
+
+```python3
+'''
+  -5 -4 -3 -2 -1 0 1 2 3 4 5
+1              1   1
+1           1    2   1
+1        1     2   2   1
+1       
+
+因为不能存在index为-5的位置 所以整个数组整体往后移sum位
+min = - sum(arr)
+max = sum(arr)
+w[i][j] 
+index,target 
+
+
+'''
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        
+        Sum = sum(nums)
+        # 注意考虑到这个corner case
+        if S > Sum:
+            return 0
+        l = Sum * 2 + 1
+        dp = [0 for _ in range(l)]
+        dp[0 + Sum] = 1  # 为了让第一个数加入时 可以让dp[-num+Sum] 和dp[num] 等于1  
+        for num in nums:
+            next_dp = [0 for _ in range(l)]            
+            for i, times in enumerate(dp):
+                if times != 0:
+                    next_dp[i-num] +=  times
+                    next_dp[i+num] +=  times
+                dp = next_dp  # 这里可以这么赋值 因为每一次都重新开辟了一个next_dp数组 不会操作覆盖
+        return dp[S+Sum] 
+       
+```
