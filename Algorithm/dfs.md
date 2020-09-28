@@ -218,8 +218,73 @@ class Solution:
                     
         s += '#'
         return dfs([], 0)
-        
                 
-        
             
+```
+
+### 785. Is Graph Bipartite?
+
+Given an undirected graph, return true if and only if it is bipartite.
+
+Recall that a graph is bipartite if we can split it's set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.  Each node is an integer between 0 and graph.length - 1.  There are no self edges or parallel edges: graph[i] does not contain i, and it doesn't contain any element twice.
+
+Example 1:
+Input: [[1,3], [0,2], [1,3], [0,2]]
+Output: true
+Explanation: 
+The graph looks like this:
+0----1
+|    |
+|    |
+3----2
+We can divide the vertices into two groups: {0, 2} and {1, 3}.
+Example 2:
+Input: [[1,2,3], [0,2], [0,1,3], [0,2]]
+Output: false
+Explanation: 
+The graph looks like this:
+0----1
+| \  |
+|  \ |
+3----2
+We cannot find a way to divide the set of nodes into two independent subsets.
+ 
+
+Note:
+
+graph will have length in range [1, 100].
+graph[i] will contain integers in range [0, graph.length - 1].
+graph[i] will not contain i or duplicate values.
+The graph is undirected: if any element j is in graph[i], then i will be in graph[j].
+
+```python3
+# dfs node and assign to one set, return false when any connect node in the same set, else return true
+# input: node as index, conn_nodes as a list
+#  题目说两个group 不一定就要用两个set作为数据结构。就方便代码实现来说，用一个dic来记录color更合适
+# 还有就是面试的时候不要被面试官带歪了 面试官反驳你的时候 要冷静思考反例 不要被带着走
+# 面试时 只要确定了一种解法 就要自信地写下去 不要怀疑这种解法不对 或者不是最优
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        
+        def dfs(node):
+            for nei in graph[node]:   
+                if nei in color_dic :
+                    if color_dic[nei] ==  color_dic[node]:
+                        return False
+                else:
+                    color_dic[nei] = 1 - color_dic[node]
+                    if not dfs(nei):
+                        return False                
+            return True
+        
+        
+        color_dic = {}
+        for node in range(len(graph)):
+            if node not in color_dic:
+                color_dic[node] = 0
+                if not dfs(node):
+                    return False
+        return True
 ```
