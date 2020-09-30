@@ -270,7 +270,9 @@ Clarification: The input/output format is the same as how LeetCode serializes a 
  
 Example 1:
 
+
 ![Avator](https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg)
+
 Input: root = [1,2,3,null,null,4,5]
 Output: [1,2,3,null,null,4,5]
 Example 2:
