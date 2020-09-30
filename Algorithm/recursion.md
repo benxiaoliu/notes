@@ -275,16 +275,16 @@ Example 1:
 
 Input: root = [1,2,3,null,null,4,5]
 Output: [1,2,3,null,null,4,5]
-Example 2:
 
+Example 2:
 Input: root = []
 Output: []
-Example 3:
 
+Example 3:
 Input: root = [1]
 Output: [1]
-Example 4:
 
+Example 4:
 Input: root = [1,2]
 Output: [1,2]
  
