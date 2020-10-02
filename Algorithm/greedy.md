@@ -79,3 +79,86 @@ class Solution:
         return len(tasks) + max(max_idle, 0)
                
 ```
+
+
+
+787. Cheapest Flights Within K Stops
+
+There are n cities connected by m flights. Each flight starts from city u and arrives at v with a price w.
+
+Now given all the cities and flights, together with starting city src and the destination dst, your task is to find the cheapest price from src to dst with up to k stops. If there is no such route, output -1.
+
+Example 1:
+Input: 
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]
+src = 0, dst = 2, k = 1
+Output: 200
+Explanation: 
+The graph looks like this:
+
+![Avator](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/02/16/995.png)
+
+The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
+Example 2:
+Input: 
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]
+src = 0, dst = 2, k = 0
+Output: 500
+Explanation: 
+The graph looks like this:
+
+![Avator](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/02/16/995.png)
+
+The cheapest price from city 0 to city 2 with at most 0 stop costs 500, as marked blue in the picture.
+ 
+
+Constraints:
+
+The number of nodes n will be in range [1, 100], with nodes labeled from 0 to n - 1.
+The size of flights will be in range [0, n * (n - 1) / 2].
+The format of each flight will be (src, dst, price).
+The price of each flight will be in the range [1, 10000].
+k is in the range of [0, n - 1].
+There will not be any duplicated flights or self cycles.
+
+
+```python
+# notice this is a directed graph
+# greedy 
+
+'''
+def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        graph = collections.defaultdict(list)
+        min_heap = [[0, src, -1]]  # cost, node, stops
+        for src, dst, price in flights:  # !!!!!注意命名规范 这样不对 会把输入的dst改变 导致整个要求的东西都改变了...
+            graph[src].append([dst, price])
+        while min_heap:
+            cost, node, stops = heapq.heappop(min_heap)
+            if node == dst and stops <= K:
+                return cost
+            
+            stops += 1
+            if stops <= K and node in graph:
+                for nei, price in graph[node]:
+                    heapq.heappush(min_heap, [cost + price, nei, stops])
+        return -1
+'''
+class Solution:
+    
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        graph = collections.defaultdict(list)
+        min_heap = [[0, src, -1]]  # cost, node, stops
+        for frm, to, price in flights:
+            graph[frm].append([to, price])
+        while min_heap:
+            cost, node, stops = heapq.heappop(min_heap)
+            if node == dst and stops <= K:
+                return cost
+            
+            stops += 1
+            if stops <= K:
+                for nei, price in graph[node]:
+                    heapq.heappush(min_heap, [cost + price, nei, stops])
+        return -1
+                
+```
