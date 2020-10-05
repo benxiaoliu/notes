@@ -86,3 +86,54 @@ class Solution:
 
         return res
 ```
+how amy ways:
+divide array into 3 parts where each previous part is smaller or equal to the next part
+
+```python3
+def findCount(arr, n):
+    # Stores the prefix sums
+    prefix_sum = [0 for x in range(n)]
+    prefix_sum[0] = arr[0]
+
+    for i in range(1, n):
+        prefix_sum[i] = prefix_sum[i - 1] + arr[i]
+
+        # Stores the suffix sums
+    suffix_sum = [0 for x in range(n)]
+
+    suffix_sum[n - 1] = arr[n - 1]
+
+    for i in range(n - 2, -1, -1):
+        suffix_sum[i] = suffix_sum[i + 1] + arr[i]
+
+    s = 1
+    e = 2
+    curr_subarray_sum = arr[s]
+    count = 0
+    # curr_subarray_sum : include arr[s], not include arr[e]   arr[s:e]
+    # Traverse the given array
+    while (s <= n - 2 and e <= n - 1):
+            #2 3 1 7
+            #2 7 1 7
+        # Updating curr_subarray_sum until
+        # it is less than prefix_sum[s-1]
+        while (e <= n - 1 and curr_subarray_sum < prefix_sum[s - 1]):
+            curr_subarray_sum += arr[e-1]
+            e += 1
+        # increasing end
+        while e <= n - 1 and curr_subarray_sum <= suffix_sum[e]:
+            # Increase count
+            count += 1
+            curr_subarray_sum += arr[e-1]
+            e += 1
+        if e == n or curr_subarray_sum > suffix_sum[e]:
+            curr_subarray_sum -= arr[e-1]
+            e -= 1
+
+        # Decrease curr_subarray_sum by arr[s[]
+        curr_subarray_sum -= arr[s]
+        s += 1
+
+    return count
+```
+
