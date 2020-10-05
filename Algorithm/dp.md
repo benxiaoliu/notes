@@ -461,3 +461,52 @@ class Solution:
                 dp[(j, dif)] = dp.get((i, dif), 1) + 1
         return max(dp.values())
 ```
+
+eBay OA 题库里的
+maxArithmeticLength
+Suppose we have array a and b (no duplicates & sorted) a = [0,4,8,20]
+b = [5,7,12,16,22]
+Suppose u can pick any number of element from b (could be 0), and u want to insert them into array a such that all elements in a are increasing by certain number,
+so in this example u can pick "12, 16" from b and append into a such that a = [0,4,8,12,16,20], which increase by 4 for each elem​​​​​​​​​​​​​​​​​​​ent
+write a function to return the maximum number of element in a after appending elements from b (in the exmaple above the result is 6), if there is no such case, return -1
+
+```python 3
+
+def merge(a, b):
+   c = []
+   while a or b:
+       if not a:
+           c += b
+           break
+       if not b:
+           c += a
+           break
+
+       if a[0] < b[0]:
+           c.append(a.pop(0))
+       elif a[0] == b[0]:  # remove duplicate
+           b.pop(0)
+       else:
+           c.append(b.pop(0))
+   return c
+
+def longestArithSeqLength(a, b):
+   original_a = set(a)
+   # merge a, b
+   A = merge(a, b)
+   dp = {}  # (index,dif):(length,{Arithmetic subarray}
+   for i in range(len(A)):  # O(n)
+       for j in range(i+1, len(A)):  # O(n)
+           count, arithmetic_subarray = dp.get((i, A[j] - A[i]), (1, {A[i]}))
+           _arithmetic_subarray = arithmetic_subarray.copy()  # 对象，防止修改之前的set
+           _arithmetic_subarray.add(A[j])  # O(1)
+           dp[(j, A[j] - A[i])] = (count + 1, _arithmetic_subarray)
+           if A[j] in original_a:  # can not skip any number in original_a
+               break
+   re = -1
+   for count, arithmetic_subarray in dp.values():
+       if original_a.issubset(arithmetic_subarray):
+           re = max(re, count)
+
+   return re
+```
