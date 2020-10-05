@@ -1,4 +1,4 @@
-85. Maximal Rectangle
+### 85. Maximal Rectangle
 
 Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
 
@@ -54,7 +54,7 @@ class Solution:
 
 ```
 
-10. Regular Expression Matching
+### 10. Regular Expression Matching
 
 Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
 
@@ -142,8 +142,8 @@ public boolean isMatch(String s, String p) {
 }
 ```
 
-1143. Longest Common Subsequence
-=====
+### 1143. Longest Common Subsequence
+
 
 Given two strings text1 and text2, return the length of their longest common subsequence.
 
@@ -208,8 +208,7 @@ class Solution:
 
 
 
-718. Maximum Length of Repeated Subarray
-===
+### 718. Maximum Length of Repeated Subarray
 
 Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.
 
@@ -277,7 +276,7 @@ class Solution:
 ```
 
 
-416. Partition Equal Subset Sum
+### 416. Partition Equal Subset Sum
 
 Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
 
@@ -352,7 +351,7 @@ class Solution(object):
 ```
 
 
-494. Target Sum
+### 494. Target Sum
 
 You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
 
