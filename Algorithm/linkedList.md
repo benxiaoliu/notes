@@ -271,3 +271,77 @@ class LFUCache:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
+
+
+### 19. Remove Nth Node From End of List
+
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+Follow up: Could you do this in one pass?
+
+ 
+
+Example 1:
+
+![Avatar](https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg)
+
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+Example 2:
+
+Input: head = [1], n = 1
+Output: []
+Example 3:
+
+Input: head = [1,2], n = 1
+Output: [1]
+ 
+
+Constraints:
+
+The number of nodes in the list is sz.
+1 <= sz <= 30
+0 <= Node.val <= 100
+1 <= n <= sz
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ 
+ dummyHead-1-2-3-4-5-6-null n=2
+ l,r = dummyHHead
+ r-head move n (2)
+ l, r move utile r.next == null   ->    l(4)  r(6)
+ delete l.next: l.next = l.next.next
+ return dummyHead.next
+ 使用dummyHead 解决了需要删除的是头节点的corner cases
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummyHead = new ListNode(0, head);
+        ListNode left = dummyHead, right = dummyHead;
+        
+        while (n-- > 0){       
+            right = right.next;                           
+        }
+        
+        while (right != null && right.next != null) {
+            left = left.next;
+            right = right.next;
+        }
+        
+        // corner cases:
+        // delete head
+        left.next = left.next.next;
+        return dummyHead.next;
+        
+    }
+}
+```
