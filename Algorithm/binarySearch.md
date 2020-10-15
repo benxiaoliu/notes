@@ -1,4 +1,37 @@
-![Avatar](https://github.com/benxiaoliu/notes/blob/master/Algorithm/images/binary%20search.jpg)
+### 模板：
+
+```python3
+nums = [1,1,1,2,2,2,3,3,3]
+theFirstEqualTo = 2
+theLastEqualTo = 2
+
+def lowerBound (nums, theFirstEqualTo):
+    if not nums:
+        return None
+    left, right = 0, len(nums) - 1  # 现在还不确定left, right 跟 theFirstEqualTo的大小关系 下面会判断 并且不会错过判断任何一个数
+    while left < right:
+        mid = (left + right) // 2  # 整除 向下取整 总是取偏小的一个
+        if nums[mid] < theFirstEqualTo:  # 只有发现比要找的数小了 才移动左边界 这样保证不会错过第一个与target相等的数
+            left = mid + 1
+        else:  # nums[mid] >= theFirstEqualTo
+            right = mid
+    return left if nums[left] == theFirstEqualTo else -1  # 或者return right if nums[right] == theFirstEqualTo else -1
+
+def upperBound(nums, theLastEqualTo):
+    if not nums:
+        return None
+    left, right = 0, len(nums) - 1
+    while left < right:
+        mid = (left + right + 1) // 2  # 求最后一个等于target的，得总是取较大的一个index了
+        if nums[mid] > theLastEqualTo:  # 只有当发现比要找的数大了 才移动右边界 这样保证不会错过最后一个与target相等的数
+            right = mid - 1
+        else:
+            left = mid
+    return left if nums[left] == theLastEqualTo else -1  # 或者return right if nums[right] == theFirstEqualTo else -1
+
+print(lowerBound(nums, theLastEqualTo))  # 3
+print(upperBound(nums, theLastEqualTo))  # 5
+```
 
 
 ### 875. Koko Eating Bananas
