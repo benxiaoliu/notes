@@ -170,7 +170,7 @@ class Solution:
                 lower_bound = mid + 1
             else:
                 upper_bound = mid
-        return upper_bound
+        return lower_bound
       
 ```
 
