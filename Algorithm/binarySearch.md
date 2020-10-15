@@ -137,3 +137,49 @@ class Solution:
         return upper_bound
       
 ```
+
+
+### eBay phone screen 
+
+find a string in an sorted array with "" here and there
+["", apple, "", "", "", box, "", "", "card", ""]
+target = box
+return 5
+
+
+```python3
+
+'''
+if find "" :
+    move right and left at the same time to find the first non-empty string as mid position
+if words[mid] == target: return mid
+elif words[mid] > target: right = mid - 1
+else: left = mid + 1
+'''
+
+def searchStr(words, target):
+    l, r = 0, len(words) - 1  # 0, 9
+    pre_l, pre_r = 0, len(words) - 1
+    while l <= r:  
+        mid = (l + r) // 2  # 4, 2
+        left, right = mid - 1, mid + 1
+        if words[mid] == "":
+            # 同时判断left和right, 哪个先不为空就把哪个设为mid!!!!  注意这种逻辑怎么写
+            while right <= r and left >= l:
+                if words[right] != "":
+                    mid = right
+                    break
+                if words[left] != "":
+                    mid = left
+                    break
+                right += 1
+                left -= 1
+
+        if words[mid]  == target:
+            return mid
+        elif words[mid]  < target:
+            l = mid + 1
+        else:
+            r = mid - 1  # 4
+    return -1
+```
