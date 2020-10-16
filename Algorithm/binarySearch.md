@@ -29,8 +29,26 @@ def upperBound(nums, theLastEqualTo):
             left = mid
     return left if nums[left] == theLastEqualTo else -1  # 或者return right if nums[right] == theFirstEqualTo else -1
 
+# if the array is sorted and each element in the array is unique, or it's not unique but you can return anyone
+def findInUnique(nums, target):
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif target > nums[mid] :
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+    
 print(lowerBound(nums, theLastEqualTo))  # 3
 print(upperBound(nums, theLastEqualTo))  # 5
+print(findInUnique([0,1,2,3,4,5,6,7],5))  # 5
+print(findInUnique([0,1,2,3,4,5,5,5,6,7],5))  # 7
+
+
+
 ```
 ### 704. Binary Search
 只是找target 不管上下界 用哪一个模板都可以
@@ -330,5 +348,62 @@ class Solution:
             else:
                 left = mid
         return left
+
+```
+
+### 33. Search in Rotated Sorted Array
+
+You are given an integer array nums sorted in ascending order, and an integer target.
+
+Suppose that nums is rotated at some pivot unknown to you beforehand (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+
+If target is found in the array return its index, otherwise, return -1.
+
+Example 1:
+
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+Example 2:
+
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
+Example 3:
+
+Input: nums = [1], target = 0
+Output: -1
+ 
+
+Constraints:
+
+1 <= nums.length <= 5000
+-10^4 <= nums[i] <= 10^4
+All values of nums are unique.
+nums is guranteed to be rotated at some pivot.
+-10^4 <= target <= 10^4
+
+```python3
+'''
+find the side which is sorted first, then decide which part to search, combine same operation in else condition
+'''
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        n = len(nums) - 1
+        left, right = 0, len(nums) - 1  
+        while left <= right:          
+            mid = (left + right) // 2  
+            if nums[mid] == target:
+                return mid
+            if nums[mid] > nums[right]:  # mid is in not sorted part                
+                if nums[left] <= target < nums[mid]: # in this case, if we want a smaller one, it can be in both parts, but if we want a bigger one, it must be in the right part
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1
 
 ```
