@@ -499,3 +499,57 @@ class Solution:
                 right = mid - 1
         return nums[0]  # 如果没有pivot或者只有一个数
 ```
+
+154. Find Minimum in Rotated Sorted Array II
+
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+
+Find the minimum element.
+
+The array may contain duplicates.
+
+Example 1:
+
+Input: [1,3,5]
+Output: 1
+Example 2:
+
+Input: [2,2,2,0,1]
+Output: 0
+Note:
+
+This is a follow up problem to Find Minimum in Rotated Sorted Array.
+Would allow duplicates affect the run-time complexity? How and why?
+
+```python3
+'''
+[3,1,1,1,1]
+[2,2,2,0,0,1,2,2,2]
+'''
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1  # 0，0
+        while left < right:  # 因为不一定存在，并且里面没有跳出条件 所以这边不能等于，以防死循环
+            mid = (left + right) // 2  # 0
+            if mid - 1 > -1 and nums[mid-1] > nums[mid]:
+                return nums[mid]
+            if nums[mid] > nums[-1]:
+                left = mid + 1
+            elif nums[mid] == nums[-1]:
+                temp = mid
+                while temp < len(nums) and nums[temp] == nums[-1]:
+                    temp += 1
+                if temp == len(nums):
+                    right = mid  # 不能等于mid - 1,有可能会跳过答案 如 [3,1,1,1,1]
+                else:
+                    left = temp - 1
+            else:
+                right = mid
+        if left - 1 >= 0 and nums[left-1] > nums[left]:
+            return nums[left]
+        return nums[0]
+        
+```
