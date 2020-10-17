@@ -529,6 +529,11 @@ Would allow duplicates affect the run-time complexity? How and why?
 [2,2,2,0,0,1,2,2,2]
 '''
 
+'''
+[3,1,1,1,1]
+[2,2,2,0,0,1,2,2,2]
+'''
+
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1  # 0，0
@@ -550,6 +555,8 @@ class Solution:
                 right = mid
         if left - 1 >= 0 and nums[left-1] > nums[left]:
             return nums[left]
-        return nums[0]
+        else:
+            return nums[0]
+        
         
 ```
