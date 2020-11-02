@@ -1,3 +1,9 @@
+feedback:
+I just tried this plug in; its very cool and a very fast way to ad-hoc debugging of RankLM! I think a lot of this could be reused for our other deep learning models and the experience could even be reused for debugging MEB
+
+Thanks QP team for the continuous support of RankLM plugin, from *debugging* intermediate results of RankLM model, to *interpreting* deep models via attention visualization. This will lead to better understanding of this Transformer-based model, and help us develop new techniques through failure analysis.
+
+
 Overview 
 
 The QP architecture is split between the backend and the frontend. The two communicate using JSON POST requests. 
