@@ -26,3 +26,31 @@ this 是一个引用，一个变量， this变量中保存了内存地址指向�
 带有static的方法是类的所有对象共有的，通过类名.xxx调用
 
 带有static的方法当中不能直接访问实例变量和实例方法，因为实力变量和实例方法都需要对象的存在。而static的方法中是没有this的，也就是说当前对象是不存在的，自然也是无法访问当前对象的实例变量和实例方法。
+
+object:
+object 类是所有类的根父类 （默认继承）[子类可以执行父类的方法] [父类可以接收子类实例 Object o = new Student()]
+若形参为一个类 但是不确定是什么类 就可用Object
+public boolean equals (Object obj) 比较是不是指向同一个instance
+public int hashCode()  取得Hash码
+public String toSting()  返回的是对象内存地址 
+
+hashCode()
+我觉得hashcode可以看作是人的名字，人名相同的不一定是同一个人
+默认情况下，hashCode方法是将对象的存储地址进行映射。
+不同的对象可能会生成相同的hashcode值。虽然不能根据hashcode值判断两个对象是否相等，但是可以直接根据hashcode值判断两个对象不等，如果两个对象的hashcode值不等，则必定是两个不同的对象。如果要判断两个对象是否真正相等，必须通过equals方法。
+
+　　也就是说对于两个对象，如果调用equals方法得到的结果为true，则两个对象的hashcode值必定相等；
+
+　　如果equals方法得到的结果为false，则两个对象的hashcode值不一定不同；
+
+　　如果两个对象的hashcode值不等，则equals方法得到的结果必定为false；
+
+　　如果两个对象的hashcode值相等，则equals方法得到的结果未知。
+  
+  在重写equals方法的同时，必须重写hashCode方法. 
+  只要equals方法的比较操作用到的信息没有被修改，那么对这同一个对象调用多次，hashCode方法必须始终如一地返回同一个整数。
+  
+  final： 最终
+  可修饰 类（不能被继承），属性（不能被改变，必须在定义的时候就显式赋值）【常量，全大写】，方法（不能被重写）
+  
+  
