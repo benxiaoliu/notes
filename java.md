@@ -37,7 +37,9 @@ public String toSting()  返回的是对象内存地址
 hashCode()
 我觉得hashcode可以看作是人的名字，人名相同的不一定是同一个人
 默认情况下，hashCode方法是将对象的存储地址进行映射。
+hashCode()方法和equals()方法都是Object类中的方法，不过hashCode()方法是一个native方法，它的返回值默认与System.identityHashCode(object)一致。这个值是对象头的一部分二进制位组成的数字，这个数字具有一定的标识对象的意义所在，但绝不等价于地址。
 不同的对象可能会生成相同的hashcode值。虽然不能根据hashcode值判断两个对象是否相等，但是可以直接根据hashcode值判断两个对象不等，如果两个对象的hashcode值不等，则必定是两个不同的对象。如果要判断两个对象是否真正相等，必须通过equals方法。
+hashCode简单理解为对象的标识，一般用于hash算法中，这样就可以在查找数据的时候根据这个key快速的缩小数据范围。hashCode与equals似乎是天生一对，一个未来算法快速定位数据而存在，一个是为了对比真实值而存在。但是不能说hashCode是唯一的，不同对象的hashCode值可能会相同。
 
 　　也就是说对于两个对象，如果调用equals方法得到的结果为true，则两个对象的hashcode值必定相等；
 
@@ -47,10 +49,57 @@ hashCode()
 
 　　如果两个对象的hashcode值相等，则equals方法得到的结果未知。
   
-  在重写equals方法的同时，必须重写hashCode方法. 
-  只要equals方法的比较操作用到的信息没有被修改，那么对这同一个对象调用多次，hashCode方法必须始终如一地返回同一个整数。
+  在重写equals方法的同时，必须重写hashCode方法. （在hashMap等集合的查找过程中是这样处理的，首先会对比根据hashCode值确定对应的桶，然后在桶里查找equals相同的对象，因此hashMap的查找速率比List要快。试想重写了equals()的两个对象相同，但没有覆写hashCode方法，很有可能会造成两个对象不再一个桶，这样map中的contains方法在查找的时候就找不到在其他桶的相同的对象了）
+  
+只要equals方法的比较操作用到的信息没有被修改，那么对这同一个对象调用多次，hashCode方法必须始终如一地返回同一个整数。
   
   final： 最终
   可修饰 类（不能被继承），属性（不能被改变，必须在定义的时候就显式赋值）【常量，全大写】，方法（不能被重写）
+  
+  Java 异常：
+  用于处理非预期的情况，如文件没找到，网络错误，非法的参数
+  解决方法： 终止程序的运行；程序员在编写程序时就考虑到错误的检测.错误消息的提示，以及错误的处理
+  Error： JVM系统内部错误（StackOverFlowError, OutOfMemoryError）， 资源耗尽等严重情况
+  Exception(IOException, RuntimeException)： 其他编程错误或偶然的外在因素导致的一般性问题，如空指针访问（指向空），试图读取不存在的文件，网络连接中断
+  
+  异常处理机制： 防止程序中断
+  捕获 try{
+  可能出现异常的代码段
+  }catch(Excetion e){
+  当不知道捕获的是什么类型的异常时，可以直接使用所有异常的父类Exception
+  e.printStackTrace(); 打印异常的类型
+  System.out.println(e.getMessage())  打印异常信息
+  }catch{
+  可多个捕获  （在捕获异常的代码块try中， 如果前面的代码有异常了，就不会执行后面的）
+  finally{ 可选
+  最终会执行的操作 
+  }
+  
+  
+  
+  
+  抛出
+  throws
+  throws抛出的异常，在调用方法去处理（try catch). main方法抛出的异常直接抛到虚拟机上去了，就在程序中不能处理
+  
+  子类不能抛出比父类还大的异常类型
+  
+  
+  
+  集合：用来存放对象的容器， 存放的是对象的引用
+  集合可以存放不同类型，不限数量的数据类型
+  Java集合可分为Set, List, Map 三大体系
+  Set：无序，不可重复的集合
+  HashSet 是Set接口的典型实现，大多数时候使用Set集合使用的都是这个实现类
+  HashSet按Hash算法来存储集合中的元素
+  HashSetb不能保证元素的排列顺序，不可重复，不是线程安全的，集合元素可以使用null
+  当向HashSet集合中存入一个元素是，HashSet会调用该对象的hashCode()方法来得到该对象的hashCode值，然后根据hashCode值决定该对象在HashSet中的存储位置 （存在set集合的哪个位置由这个值的hashcode决定； 如果两个元素的equals()方法返回true,但它们的hashCode() 返回值不相等，依然可以添加成功，但会把它们存储在不同的位置。
+  
+  
+  
+  
+  
+  List：有序，可重复的集合
+  Map: 具有映射关系的集合
   
   
