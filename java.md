@@ -264,5 +264,51 @@ for(Entry<String, Integer> en : entrys) {
 }
 ```
 
+HashMap 和 Hashtable是Map 接口的两个典型实现类
+Hashtable古老，不推荐使用， 不允许使用 null 作为key和value, 但是线程安全
+HashMap 允许使用null作为key和value 线程不安全
+
+与HashSet集合不能保证元素的顺序一样， Hashtable, HashMap 也不能保证其中key-value对的顺序
+
+Hashtable, HashMap 判断两个key 相等的标准是： 两个Key通过equals 方法返回true, hashCode值也相等
+
+
+
+TreeMap
+TreeMap存储key-value对时,需根据key对key-value对进行排序。TreeMap 可以保证所有的key-value对处于有序状态。
+自然排序(alphebetic)： TreeMap的所有的key必须实现comparable接口，而且所有的key应该是同一类的对象，否则会抛出ClassCastException
+定制排序： 创建TreeMap时，传入一个Comparator对象，该对象负责对TreeMap中的所有key进行排序（一般用不到）
+
+```java
+Map<Integer, String> map = new TreeMap<Integer, String>();
+map.put(4, "a");
+map.put(2, "a");
+map.put(3, "a");
+map.put(1, "a");
+
+System.out.println(map); // {1=a, 2=a, 3=a, 4=a}
+
+Map<String, String> map1 = new TreeMap<String, String>();
+map.put("b", "a");
+map.put("c", "a");
+map.put("da", "a");
+map.put("a", "a");
+
+System.out.println(map1); // {a=a, b=a, c=a, da=a}
+'''
+
+=================================================================================
+
+
+操作集合的工具类 ： Collections
+
+Collections 是一个操作 Set, List 和 Map等集合的工具类
+Collections中提供了大量方法对集合元素进行排序，查询和修改等操作，还提供了对集合对象设置不可变，对集合对象实现同步控制等方法
+排序操作：
+reverse(List): 反转List元素的顺序
+shuffle(List): 对List集合元素进行随机排序
+sort(List): 根据元素的自然顺序 对指定List集合元素按升序排序
+sort(List, Comparator): 根据指定的Comparator产生的顺序对List集合元素进行排序
+swap(List, int, int): 将指定list集合中的i处元素和j处元素进行交换
   
   
