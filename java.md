@@ -19,7 +19,65 @@ JVM memory:
       
 Java 传产时传的是参数里面存的那个字面值
 
-this 是一个引用，一个变量， this变量中保存了内存地址指向了自身，this存储在Java堆内存Java对象内部；代表当前对象
+this
+===
+this在方法内部使用，即这个方法所属对象的引用
+this在构造器内部使用，表示该构造器正在初始化的对象
+
+this表示当前对象，可以调用类的属性,方法，构造器
+
+什么时候使用this关键字： 当在方法内需要用到调用该方法的对象时，就用this
+
+1. 当形参与成员变量重名时，如果在方法内部需要使用成员变量，必须添加this来表明该变量是类变量
+2. 在任意方法内，如果使用当前类的成员变量或成员方法 可以在其前面添加this，增强程序的阅读性
+3. this 可以作为一个类中，构造器相互调用的特殊格式 （使用this()必须放在构造器的首行！！使用this调用本类中其他的构造器，保证至少有一个构造器是不用this的【实际上是不能出现自己调用自己】）
+
+
+```java
+class Person{
+	private String name;
+	private int age;
+    
+    /////////////////////////////////////// 1. 当形参与成员变量重名时，如果在方法内部需要使用成员变量，必须添加this来表明该变量是类变量
+	public Person(String name, int age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	public void getInfo(){
+		System.out.println("xinming" + name);
+		this.speak();
+	}
+	public void speak(){
+    ////////////////////////////////////////////2. 在任意方法内，如果使用当前类的成员变量或成员方法 可以在其前面添加this，增强程序的阅读性
+		System.out.println("nianning: "+this.age);
+	}
+}
+
+
+
+// 3.  this 可以作为一个类中，构造器相互调用的特殊格式
+
+class Person{
+	private String name;
+	private int age;
+	
+	public Person(){  // 无参构造
+		System.out.println("新对象实例化");
+	}
+	public Person(String name){
+		this();  //调用本类中的无参构造方法
+		this.name = name;
+	}
+	public Person(String name, int age){
+		this(name);  //调用本类中的有一个参数的构造方法
+		this.age = age;
+	}
+}
+
+```
+
+
 
 没有static的方法，变量被称为实例方法，变量，通过引用访问，先创建对象，具体的对象.xxx
 
@@ -310,5 +368,89 @@ shuffle(List): 对List集合元素进行随机排序
 sort(List): 根据元素的自然顺序 对指定List集合元素按升序排序
 sort(List, Comparator): 根据指定的Comparator产生的顺序对List集合元素进行排序
 swap(List, int, int): 将指定list集合中的i处元素和j处元素进行交换
+Object max(Collection): 根据元素的自然顺序，返回集合中的最大元素
+Object max(Collection, Comparator): 根据Comparator指定的顺序，返回给定集合中的最大元素
+Object min(Collection)
+Object min(Collection, Comparator)
+int frequency(Collection, Object): 返回指定集合中指定元素的出现次数
+boolean replaceAll(List list, Object oldVal, Object newVal): 使用新值替换List对象的所有旧值
+
+
+同步控制：
+Collections类中提供了多个synchronizedXXX()方法，可将指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题
+
+```java
+List<String> list = new ArrayList<String>();
+list.add("b");
+list.add("a");
+list.add("1");
+
+Collections.reverse(list); // [1, a, b]
+Collections.shuffle(list); // [a,1,b]
+Collections.sort(list);  // [1, a, b]
+Collections.max(list); // b
+Collections.min(list); // 1
+
+list.add("a");
+Collections.frequency(list, "a"); // 2
+
+Collections.replaceAll(list, "a", "aa");  // [1, aa, b, aa]
+
+Student s1 = new Student (14, "zhangsan");
+Student s2 = new Student (12, "lisi");
+Student s3 = new Student (13, "wangwu");
+Student s4 = new Student (11, "xiaoliu");
+List<Student> stus = new ArrayList<Student>();
+stus.add(s1);
+stus.add(s2);
+stus.add(s3);
+stus.add(s4);
+
+for(Student stu : stus){
+    System.out.println(stu.name + "," + stu.age);
+}
+
+
+Collections.sort(stus, new Student());  // 第二个参数是无参构造
+
+Collection.max(stus, new Student()); // zhangsan 14
+
+
+
+for(Student stu : stus){
+    System.out.println(stu.name + "," + stu.age);
+}
+
+
+Collections.swap(list, 0, 2);
+
+
+class Student implements Comparator<Student>{
+	int age;
+	String name;
+	
+	public Student(){
+		
+	}
+	
+	public Student(int age, String name){
+		this.age = age;
+		this.name = name;
+	}
+	
+	@override
+	public int compare(Student o1, Student o2) {
+		if(o1.age > o2.age){
+			return 1;
+		else if(o1.age < o2.age){
+			retuen -1;
+		}else{
+			return 0;
+		}
+	}
+
+
+
+```
   
   
