@@ -79,6 +79,62 @@ class Person{
 
 
 
+static
+===
+
+当我们编写一个类时，其实就是在描述其对象的属性和行为，而并没有产生实质上的对象，只有通过new 关键字才会产生出对象，这时系统才会分配内存空间给对象，其方法才可以供外部调用。我们有时候希望无论是否产生了对象或无论产生了多少对象的情况下，某些特定的数据在内存空间里只有一份，例如所有的中国人都有个国家名称，每一个中国人都共享这个国家名称，不必再每一个中国人的实例对象中都单独分配一个用于代表国家名称的变量。
+通过类名.属性去设置和访问
+
+类属性，类方法的设计思想
+类属性作为该类各个对象之间共享的变量。在设计类时，分析哪些类属性不因对象的不同而改变，将这些属性设置为类属性。相应的方法设置为类方法。
+如果方法与调用者无关，则这样的方法通常被声明为类方法，由于不需要创建对象就可以调用类方法，从而简化了方法的调用
+
+static 使用范围：
+在Java类中，可用static修饰属性, 方法，代码块，内部类
+
+被修饰的成员具备以下特点：
+随着类的加载而加载
+优先于对象存在（不用new就能用）
+修饰的成员，被所有对象共享
+访问权限允许时，可不创建对象，直接被类调用
+
+
+类方法
+因为不需要实例就可以访问static方法，因此static方法内部不能有this (也不能有super)
+重载的方法需要同时为static的或者非static的
+```java
+public class Chinese {
+	public Chinese(){
+	    Chinese.count += 1;
+	}
+	static String country;  //类变量不用实例化，直接类名.属性名就可以使用。是类的一部分，被所有这个类的实例化对象所共享，也叫静态变量
+	public static int count; // 计数一共被new了多少次
+	String name;  // instance variable 实例变量， 只有实例化之后才能使用，属于实例化对象的一部分，不能共用
+	int age;
+	
+	public static void test() {
+		System.out.println("这是一个静态方法");
+	}
+	public static void showCount(){
+	   System.out.println("总共new了" + Chinese.count + "个中国人对象" )
+	}
+}
+
+Chinese.country = "China";
+Chinese.test();
+
+//判断字符串不为空
+//在未来开发中 可能会多次使用这样的判断，那么在大量次数的基础上看，就发现代码的重复很多，所以把这样的代码抽取到工具类做成一个方法
+public class Utils {
+	public static boolean isEmpty(String s){
+		boolean flag = false;
+		if(s != null && !s.equlas("")){
+			flag = true;
+		}
+		return flag;
+	}	
+}
+```
 没有static的方法，变量被称为实例方法，变量，通过引用访问，先创建对象，具体的对象.xxx
 
 带有static的方法是类的所有对象共有的，通过类名.xxx调用
@@ -452,5 +508,7 @@ class Student implements Comparator<Student>{
 
 
 ```
+
+
   
   
